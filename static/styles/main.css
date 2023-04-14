@@ -1,0 +1,326 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tilt Neon', cursive;
+}
+
+body{
+    overflow: hidden ;
+
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f3f5f8;
+}
+
+nav{
+    display: flex;
+    width: 100% ;
+    justify-content: space-around;
+    height: 80px;
+    line-height: 80px;
+    z-index: 111;
+    
+}
+
+.logo{
+    display: flex;
+    font-size: 20px;
+    font-weight: 100;
+    color: #3d535f;
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.b{
+    font-size: 70px;
+    color: #7f00ff;
+}
+
+.navItems{
+    display: flex;
+}
+
+.navItems li{
+    list-style: none;
+    margin: 0 15px;
+    
+}
+
+.navItems li a{
+    font-size: 25px;
+    color: #3d535f;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.wrapper{
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 80px);
+    justify-content:  center;
+    align-items: center;
+    padding: 0 10%;
+    overflow: hidden;
+}
+
+.wrapper::before{
+    position: absolute;
+    content: '';
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    left: -10%;
+    top: 50%;
+    background: linear-gradient(45deg, #7f00ff,pink);
+    animation: object1 6s linear infinite;
+}
+
+.wrapper::after{
+    position: absolute;
+    content: '';
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    left: 35%;
+    top: 12%;
+    background: linear-gradient(45deg, #7f00ff,pink);
+    animation: object2 6s linear infinite;
+
+}
+
+@keyframes object1{
+    50%{
+        left: -15%;
+        top: 40%;
+    }
+}
+
+@keyframes object2{
+    50%{
+        left: 35%;
+        top: 20%;
+    }
+}
+
+
+
+.cols{
+    width: 50%;
+}
+
+.cols0{
+    z-index: 5;
+}
+
+.topline{
+    display: block;
+    position: relative;
+    font-size:  35px;
+    letter-spacing: 5px;
+    color: #3d535f;
+}
+
+.topline::after{
+    position: absolute;
+    content: '';
+    height: 4px;
+    width: 45px;
+    bottom: 10px;
+    background-color: #7f00ff;
+}
+h1{
+    display: block;
+    font-size: 7em;
+    font-weight: 900;
+    color: #3d535f;
+}
+
+.multiText{
+    color: #7f00ff;
+    text-transform: capitalize;
+}
+
+p{
+    display: block;
+    width: 90%;
+    font-size: 1.2em;
+    color: 3d535f;
+}
+
+.btns{
+    width: 100%;
+    position: relative;
+    left: 150px;
+}
+
+button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: 400;
+    color: #fff;
+    background-color: #3d535f;
+    padding: 8px 14px;
+    margin: 40px 5px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    box-shadow: 0 15px 10px rbga(0,0,0,0.4);
+
+}
+
+button:hover{
+    background-color: #7f00ff;
+}
+
+.imgbox{
+    position: relative;
+    width: 30%;
+    height: 80%;
+}
+
+.imgbox img{
+    position: relative;
+    top: 0px;
+    right: 420px;
+}
+ */
+/* ---- reset ---- */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@1000&display=swap");
+* {
+  margin: auto;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+}
+body:before {
+  content: "";
+  position: fixed;
+  top: -50vh;
+  width: 100%;
+  height: 200%;
+  background-image: url(https://www.pixel4k.com/wp-content/uploads/2018/10/material-minimalist-4k_1539371343.jpg);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.32);
+  animation: bob 20s ease infinite alternate;
+}
+
+.triangle {
+  position: absolute;
+  translate: 0px 50vh;
+  animation: bob 20s cubic-bezier(1, -0.48, 0, 1.35) infinite alternate, blink 0.8s ease infinite alternate, pulse 1.6s ease infinite alternate, spin 30s ease infinite;
+}
+
+
+.statement {
+  position: relative;
+  height: 100vh;
+  max-width: 600px;
+  display: flex;
+}
+.statement:before, .statement:after {
+  content: "";
+  position: absolute;
+  scale: 3;
+  opacity: 0.8;
+  filter: drop-shadow(50px);
+  border: 100px solid transparent;
+  border-right-width: 0px;
+  border-left: 150px solid #f0f0f0;
+  rotate: -90deg;
+}
+.statement:before {
+  bottom: 20%;
+  rotate: -45deg;
+  animation: lil-spin 10s ease-in-out infinite;
+}
+.statement:after {
+  top: 20%;
+  right: 20%;
+  rotate: -105deg;
+  scale: 5;
+  mix-blend-mode: difference;
+  animation: lil-spin 15s ease-in-out infinite reverse;
+}
+.statement .extra-triangle {
+  content: "";
+  position: absolute;
+  top: 20%;
+  scale: 3;
+  opacity: 0.8;
+  filter: drop-shadow(50px);
+  border: 100px solid transparent;
+  border-right-width: 0px;
+  border-left: 150px solid #f0f0f0;
+  rotate: -90deg;
+  rotate: 95deg;
+  animation: lil-spin 10s ease-in-out infinite reverse;
+}
+.statement .title {
+  position: relative;
+  color: #fff;
+  font-family: nunito;
+  font-size: 5rem;
+  mix-blend-mode: difference;
+  animation: lil-spin 10s linear infinite;
+}
+
+@keyframes bob {
+  from {
+    translate: 0px 50vh;
+  }
+  to {
+    translate: 0px -50vh;
+  }
+}
+@keyframes blink {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.1);
+  }
+}
+@keyframes spin {
+  from {
+    rotate: -90deg;
+  }
+  to {
+    rotate: 270deg;
+  }
+}
+@keyframes lil-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  75% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
