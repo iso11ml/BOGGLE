@@ -1,0 +1,13 @@
+
+<h1>Boggle Board</h1>
+<table>
+{% for row in board %}
+    <tr>
+    {% for cell in row %}
+        <td>{{ cell }}</td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+</table>
+
+
