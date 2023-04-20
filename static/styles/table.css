@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
 h1{
     font-family: 'Satisfy', cursive;
 }
@@ -96,6 +97,7 @@ body{
   border-radius: 10px;
   /* box-shadow: 0 0 0 3px rgba(30, 30, 30, 0.357); */
   transition: background-color 0.2s ease-in-out;
+  font-family: 'Tilt Neon', cursive;
 }
   
 .boggle-cell:hover {
@@ -114,6 +116,7 @@ body{
 .score th, .score td {
   padding: 15px;
   text-align: center;
+  font-family: 'Tilt Neon', cursive;
 }
 
 .score th {
