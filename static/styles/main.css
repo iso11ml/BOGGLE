@@ -333,12 +333,12 @@ body:before {
   font-family: 'Press Start 2P', cursive;
 } */
 
-a {
-  /* Estilos para el enlace */
+/* a {
   position: relative;
-  z-index: 1;
+  z-index: 9999;
   
   font-family: 'Press Start 2P', cursive;
   color: white;
   text-decoration: none;
-}
+  animation: move 5s linear infinite;
+} */
