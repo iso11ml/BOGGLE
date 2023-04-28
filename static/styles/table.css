@@ -6,9 +6,21 @@
 h1{
     font-family: 'Satisfy', cursive;
 }
+
+*{
+  margin: 0;
+  padding: 0;
+}
 body{
-  padding: 10px; 
-  background: linear-gradient(135deg, #c8efcc, #f0cbb1);
+  /* padding: 10px;  */
+  display: flexl;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  overflow: hidden;
+  /* background: linear-gradient(135deg, #c8efcc, #f0cbb1); */
 }
 
 .general-container{
@@ -35,7 +47,7 @@ body{
 
   width: 50%;
   height: 100%;
-  background-color: #2b6630;
+  /* background-color: #2b6630; */
   /* display: flex;
   flex-direction: column;
   align-items: center;
@@ -130,5 +142,17 @@ body{
   background-color: #f2f2f2;
 }
 
+.glowing{
+  position: relative;
+  width: 750px;
+  height: 750px;
+}
 
-  
+.glowing span{
+  position: absolute;
+  top: calc(80px *var(--i));
+  left: calc(80px *var(--i));
+  right: calc(80px *var(--i));
+  bottom: calc(80px *var(--i));
+
+}
