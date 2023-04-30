@@ -25,7 +25,7 @@
 
             </div>
         </div>
-
+        <div id="score"></div>
         <div class = "body-game-container">
             <!-- Tablero -->
             <table class="boggle-board">
@@ -39,27 +39,47 @@
             </table>
             <script>
                 const botones = document.querySelectorAll('.boggle-board button');
-
-                let seleccionando = false; // Indica si se está seleccionando o no
-
-                // Agregar un controlador de eventos de clic a cada botón
+                let letrasSeleccionadas = '';
+                let seleccionando = false;
                 botones.forEach(boton => {
                 boton.addEventListener('mousedown', () => {
-                    seleccionando = true; // Se empieza a seleccionar
-                    boton.classList.add('seleccionado'); // Seleccionar la casilla actual
+                    letrasSeleccionadas += boton.innerText;
+                    seleccionando = true;
+                    boton.classList.add('seleccionado');
+                    console.log(letrasSeleccionadas);
                 });
 
                 boton.addEventListener('mouseenter', () => {
                     if (seleccionando) {
-                    boton.classList.add('seleccionado'); // Seleccionar la casilla actual
+                    boton.classList.add('seleccionado');
+                    letrasSeleccionadas += boton.innerText;
+                    console.log(letrasSeleccionadas);
                     }
                 });
 
                 boton.addEventListener('mouseup', () => {
-                    seleccionando = false; // Se deja de seleccionar
+                    seleccionando = false;
                     botones.forEach(boton => {
-                    boton.classList.remove('seleccionado'); // Deseleccionar todas las casillas
+                    boton.classList.remove('seleccionado');
                     });
+                    if (letrasSeleccionadas !== '') {
+                    
+                    fetch('/verificar-existencia/' + letrasSeleccionadas)
+                        .then(response => response.json())
+                        .then(data => {
+                        if (data.existe) {
+                            console.log('La cadena existe en el trie');
+                        } else {
+                            console.log('La cadena no existe en el trie');
+                        }
+                        })
+                        .catch(error => {
+                        console.error(error);
+                        })
+                        .finally(() => {
+                        letrasSeleccionadas = '';
+                        });
+                    }
                 });
                 });
             </script>

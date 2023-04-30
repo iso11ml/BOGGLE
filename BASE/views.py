@@ -1,23 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import random
-
-
-# Página Principal
-def home(request):
-        return render(request, 'BASE/home.html')
-
-# Página Del Juego
-def boggle_board(request):
-        vowels = ['A', 'E', 'I', 'O', 'U']
-        alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-        weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
-        board = [[random.choices(alphabet, weights=weights)[0] for j in range(18)] for i in range(8)]
-        return render(request, 'BASE/main.html', {'board': board})
-
-     
-
-
-
+from django.contrib.staticfiles import finders
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Clase Del Trie Diccionario
 class NodoTrie:
@@ -81,12 +66,27 @@ class Trie:
 # Para cargar el banco de palabras es necesario que el archivo este en la misma ruta que el código
 # Se recomienda que tenga el mismo nombre '348713_BANCO_PALABRAS.txt'
     def Insertar_archivo(self):
-        with open('348713_BANCO_PALABRAS.txt', 'r') as f:
-            for line in f:
+        with open(finders.find('archivos/348713_BANCO_PALABRAS.txt'), 'r') as file:
+            for line in file:
                 word = line.strip()
                 self.Insert(word)
+trie = Trie()
+trie.Insertar_archivo()
+# Función Será Llamada desde boggle-board
+def verificar_existencia(request, word):
+    print(word)
+    resultado = trie.Search(word)
+    return JsonResponse({'existe': resultado})
 
+# Página Principal
+def home(request):
+        return render(request, 'BASE/home.html')
 
-def executeTrie():
-    trie = Trie()
-    trie.Insertar_archivo()
+# Página Del Juego
+def boggle_board(request):
+        vowels = ['A', 'E', 'I', 'O', 'U']
+        alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
+        board = [[random.choices(alphabet, weights=weights)[0] for j in range(18)] for i in range(8)]
+        return render(request, 'BASE/main.html', {'board': board})
+
