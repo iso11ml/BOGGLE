@@ -4,6 +4,14 @@ from django.contrib.staticfiles import finders
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+# Función Que Asigna Los Puntos De Cada Palabra
+def wordPuntuation(word):
+        if len(word) >= 3:
+            score = 3
+            return score
+
+
+
 # Clase Del Trie Diccionario
 class NodoTrie:
     def __init__(self):
@@ -75,8 +83,12 @@ trie.Insertar_archivo()
 # Función Será Llamada desde boggle-board
 def verificar_existencia(request, word):
     print(word)
-    resultado = trie.Search(word)
-    return JsonResponse({'existe': resultado})
+    state = trie.Search(word.lower())
+    if state == True:
+        score = wordPuntuation(word)
+        return JsonResponse({'flag': state, 'score': score, 'word': word})
+    else:
+        return JsonResponse({'word': state})
 
 # Página Principal
 def home(request):
@@ -90,3 +102,4 @@ def boggle_board(request):
         board = [[random.choices(alphabet, weights=weights)[0] for j in range(18)] for i in range(8)]
         return render(request, 'BASE/main.html', {'board': board})
 
+ 

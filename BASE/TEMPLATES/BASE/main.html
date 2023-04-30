@@ -67,10 +67,13 @@
                     fetch('/verificar-existencia/' + letrasSeleccionadas)
                         .then(response => response.json())
                         .then(data => {
-                        if (data.existe) {
-                            console.log('La cadena existe en el trie');
+                        if (data.flag) {
+                            console.log(data.state);
+                            console.log(data.score);
+                            console.log(data.word);
+                            
                         } else {
-                            console.log('La cadena no existe en el trie');
+                            console.log(data.word);
                         }
                         })
                         .catch(error => {
