@@ -1,0 +1,129 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+#particles-js{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: -1;
+}
+
+body{
+    background: #f59881;
+    /* background: #81f5eb; */
+}
+
+h1{
+    font-family: 'Satisfy', cursive;
+    color: black;
+}
+
+.general-container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 99;  
+} 
+  
+.title-container{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.information-player-container{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Tablero de juego */
+.body-game-container{
+
+    /* background-color:#900d0d ; */
+    /* height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1%; */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 20px;
+    height: 66.67vh;
+    gap: 2%;
+
+}
+
+
+.boggle-board {
+    background-color: white;
+    border-collapse: separate;
+    border-spacing: 10px;
+    margin: 20px auto 0;
+    font-size: 24px; 
+    border-radius: 10px;
+    flex-basis: 66.67%;
+    opacity: 0.9;
+
+  }
+
+table.boggle-board td {
+    width: 50px;
+    height: 50px;
+    font-family: 'Tilt Neon', cursive;
+  
+}
+
+table.boggle-board td button {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+    border: none;
+    font-family: 'Tilt Neon', cursive;
+    font-weight: bold;
+  font-size: 20px;
+}
+  
+table.boggle-board td button:hover {
+    background-color: #e6e6e6;
+}
+  
+table.boggle-board td button.seleccionado {
+    background-color: rgb(208, 208, 208);
+}
+/* Tablero de puntuación */
+
+.score {
+margin: 20px auto 0;
+padding: 2em;
+width: 45%;
+height: 500px;
+border-radius: 10px;
+background-color: white;
+opacity: .9;
+}
+  
+.score th, .score td {
+padding: 15px;
+text-align: center;
+font-family: 'Tilt Neon', cursive;
+} 
+
+.score th {
+/* background-color: #333; */
+color: black;
+}
+
+.score tbody tr:nth-child(even) {
+background-color: #f2f2f2;
+}

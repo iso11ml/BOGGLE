@@ -3,32 +3,60 @@
     <meta name = "viewport" content ="width=device-width, initial scale=1.0">
     <title>348713_SOSA</title>
     <link rel = "stylesheet" type = "text/css" href="{% static 'styles/table.css' %}">
-    <link rel = "stylesheet" type = "text/css" href="{% static 'js/app.js' %}">
-    ls<link rel = "stylesheet" type = "text/css" href="{% static 'js/particulas.js' %}">
+
 </head>
 <body>
-<div id="particles-js"></div>
+
 <div class = "general-container" >
     <!-- Contenedor 1 -->
     <div class = "title-container">
-        <h1>Boggle Game</h1>
+        <h1>Boggle Game By Isaay Sosa</h1>
     </div>
     <!-- Contenedor 2 -->
-     <div class = "body-general-container">
+    <div class = "body-general-container">
     <!-- Columna 1 donde está el tablero -->
         <div class = "right-column">
-            <!-- Fila 1-->
-            <div class = "row-up">
+            <div class="row-up">
                 <table class="boggle-board">
-                    {% for row in board %}
-                        <tr>
-                        {% for cell in row %}
-                            <td class="boggle-cell">{{ cell }}</td>
-                        {% endfor %}
-                        </tr>
-                    {% endfor %}
+                  {% for row in board %}
+                    <tr>
+                      {% for cell in row %}
+                        <td class="boggle-cell"><button>{{ cell }}</button></td>
+                      {% endfor %}
+                    </tr>
+                  {% endfor %}
                 </table>
             </div>
+              
+              <script>
+               
+                const botones = document.querySelectorAll('.boggle-board button');
+
+                let seleccionando = false; // Indica si se está seleccionando o no
+
+                // Agregar un controlador de eventos de clic a cada botón
+                botones.forEach(boton => {
+                boton.addEventListener('mousedown', () => {
+                    seleccionando = true; // Se empieza a seleccionar
+                    boton.classList.add('seleccionado'); // Seleccionar la casilla actual
+                });
+
+                boton.addEventListener('mouseenter', () => {
+                    if (seleccionando) {
+                    boton.classList.add('seleccionado'); // Seleccionar la casilla actual
+                    }
+                });
+
+                boton.addEventListener('mouseup', () => {
+                    seleccionando = false; // Se deja de seleccionar
+                    botones.forEach(boton => {
+                    boton.classList.remove('seleccionado'); // Deseleccionar todas las casillas
+                    });
+                });
+                });
+            </script>
+
+
 
             <div class = "row-down">
                 <table class = "score">

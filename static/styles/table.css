@@ -18,9 +18,9 @@ body{
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  background: #000;
+  /* background: #000; */
   overflow: hidden;
-  /* background: linear-gradient(135deg, #c8efcc, #f0cbb1); */
+  background: linear-gradient(135deg, #c8efcc, #f0cbb1);
 }
 
 .general-container{
@@ -65,23 +65,35 @@ body{
   justify-content: center; */
 }
 
-.row-up {
-  /* background-color: #943f3f; */
+/* .row-up {
+  background-color: #943f3f;
   height: 50%;
   width: 100%; 
   display: flex; 
   align-items: center; 
   justify-content: center;
+} */
+
+
+.row-up {
+  /* background-color: #943f3f; */
+  height: 600px; /* establece un alto fijo */
+  width: 100%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  padding: 2em; /* agrega el relleno deseado */
 }
 
 .row-down {
-  /* background-color: #eee; */
-  /* padding: 4em; */
+  
+  /* background-color: #f80000; */
   height: 50%;
   width: 100%; 
   display: flex;
   justify-content: center;
   /* align-items: center; */
+  padding: 2em;
 
 }
 
@@ -98,7 +110,7 @@ body{
   align-items: center; */
 }
   
-.boggle-cell {
+/* .boggle-cell {
   width: 50px;
   height: 50px;
   text-align: center;
@@ -109,16 +121,17 @@ body{
   background-color: white;
   color: black;
   border-radius: 10px;
-  /* box-shadow: 0 0 0 3px rgba(30, 30, 30, 0.357); */
+  box-shadow: 0 0 0 3px rgba(30, 30, 30, 0.357);
   transition: background-color 0.2s ease-in-out;
   font-family: 'Tilt Neon', cursive;
 }
   
 .boggle-cell:hover {
   background-color: #d3d3d3;
-}
+} */
 
 .score {
+  padding: 2em;
   max-width: 1125px;
   width: 100%;
   border-radius: 10px;
@@ -131,7 +144,7 @@ body{
   padding: 15px;
   text-align: center;
   font-family: 'Tilt Neon', cursive;
-}
+} 
 
 .score th {
   /* background-color: #333; */
@@ -154,5 +167,28 @@ body{
   left: calc(80px *var(--i));
   right: calc(80px *var(--i));
   bottom: calc(80px *var(--i));
+}
 
+table.boggle-board td {
+  width: 50px;
+  height: 50px;
+  font-family: 'Tilt Neon', cursive;
+
+}
+table.boggle-board td button {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  transition: background-color 0.2s ease-in-out;
+  border: none;
+  font-family: 'Tilt Neon', cursive;
+  font-weight: bold;
+}
+
+table.boggle-board td button:hover {
+  background-color: #e6e6e6;
+}
+
+table.boggle-board td button.seleccionado {
+  background-color: darkgray;
 }

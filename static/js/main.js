@@ -21,3 +21,4 @@ function MyFn(settings = {}) {
 document.addEventListener("DOMContentLoaded", () => {
 	const MyVM = new MyFn();
 });
+
