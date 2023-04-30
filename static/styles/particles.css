@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet');
 
 #particles-js{
     height: 100vh;
@@ -12,13 +12,14 @@
 }
 
 body{
-    /* background: #f59881; */
     background: linear-gradient(to right, #ff9472, #f2709c);
 }
 
 h1{
-    font-family: 'Satisfy', cursive;
+    font-family: 'Rubik', sans-serif;
     color: black;
+    font-size: 60px;
+    text-shadow: 0 0 1px black, 0 0 3px black, 0 0 30px black;
 }
 
 .general-container{
@@ -35,28 +36,30 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
+    
   }
 
 .information-player-container{
     height: 10vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    padding: 0 20px;
+    
 }
 
 .clock{
-    width: 350px;
+    width: 200px;
     height: 100px;
     display:flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Open Sans', sans-serif;
-}
+    font-family: 'Tilt Neon', cursive;}
 
 .clock div{
     background-color:  white;
     height: 100%;
-    width: 150px;
+    width: 90px;
     display:flex;
     align-items: center;
     justify-content: center;
