@@ -7,11 +7,17 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Función Que Asigna Los Puntos De Cada Palabra
 def wordPuntuation(word):
-        if len(word) >= 3:
-            score = 3
-            return score
-
-
+    if len(word) > 2 and len(word) <= 5:            
+        score = 2
+    elif len(word) > 5 and len(word) <= 7:
+        score = 5
+    elif len(word) > 7 and len(word) <= 9:
+        score = 8
+    elif len(word) > 9 and len(word) <= 12:
+        score = 11
+    elif len(word) > 12:
+        score = 15
+    return score
 
 # Clase Del Trie Diccionario
 class NodoTrie:
@@ -19,7 +25,6 @@ class NodoTrie:
         self.children = {}
         self.final_de_palabra = False
     
-
 class Trie:
     def __init__(self):
         self.root = NodoTrie()
@@ -84,6 +89,10 @@ trie.Insertar_archivo()
 global palabras
 palabras = []
 
+# Heap Para Almacenar Los Puntajes De Las Palabras
+
+
+# Función Que Inserta Las Palabras En La Lista
 def tabla_palabras(word):
     palabras.append(word)
     return palabras
