@@ -158,3 +158,12 @@ color: black;
 .score tbody tr:nth-child(even) {
 background-color: #f2f2f2;
 }
+
+.boggle-board button.correcto {
+    animation: flash 2s ease-in-out;
+    background-color: rgb(121, 231, 121);
+}
+
+.boggle-board button.incorrecto {
+    background-color: rgb(235, 107, 143);
+}

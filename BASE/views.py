@@ -4,6 +4,7 @@ from django.contrib.staticfiles import finders
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+
 # Función Que Asigna Los Puntos De Cada Palabra
 def wordPuntuation(word):
         if len(word) >= 3:
@@ -80,15 +81,24 @@ class Trie:
                 self.Insert(word)
 trie = Trie()
 trie.Insertar_archivo()
+global palabras
+palabras = []
+
+def tabla_palabras(word):
+    palabras.append(word)
+    return palabras
+
 # Función Será Llamada desde boggle-board
 def verificar_existencia(request, word):
     print(word)
     state = trie.Search(word.lower())
     if state == True:
         score = wordPuntuation(word)
-        return JsonResponse({'flag': state, 'score': score, 'word': word})
+        context = tabla_palabras(word)
+        print(context)
+        return JsonResponse({'flag': state, 'score': score, 'word': word, 'words': context})
     else:
-        return JsonResponse({'word': state})
+        return JsonResponse({'flag': state})
 
 # Página Principal
 def home(request):
