@@ -180,15 +180,13 @@ trie.Insertar_archivo()
 global palabras
 palabras = []
 
-# Heap Para Almacenar Los Puntajes De Las Palabras
-
 
 # Función Que Inserta Las Palabras En La Lista
 def tabla_palabras(word):
     palabras.append(word)
     return palabras
 
-# Función Será Llamada desde boggle-board
+# Función Para Validar Las Palabras
 def verificar_existencia(request, word):
     print(word)
     state = trie.Search(word.lower())
