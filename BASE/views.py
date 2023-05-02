@@ -181,7 +181,7 @@ global palabras
 palabras = []
 
 
-# Función Que Inserta Las Palabras En La Lista
+# Función Que Inserta Las Palabras En La Lista -: Cambiar Hash
 def tabla_palabras(word):
     palabras.append(word)
     return palabras
@@ -192,12 +192,12 @@ def verificar_existencia(request, word):
     state = trie.Search(word.lower())
     if state == True:
         score = wordPuntuation(word)
-        context = tabla_palabras(word)
+        tabla_palabras(word)
         fibonacciHeap.insert_node(score, word)
         max_score = fibonacciHeap.get_max()
         #print(max_score)
-        print(context)
-        return JsonResponse({'flag': state, 'score': score, 'word': word, 'words': context, 'max_score': max_score})
+        # print(context)
+        return JsonResponse({'flag': state, 'score': score, 'word': word,  'max_score': max_score})
     else:
         return JsonResponse({'flag': state})
 

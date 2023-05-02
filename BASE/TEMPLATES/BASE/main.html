@@ -71,31 +71,34 @@
                             console.log(data.score);
                             console.log(data.word);
                             botones.forEach(boton => {
-                            if (boton.classList.contains('seleccionado')) {
-                                boton.classList.add('correcto');
-                                setTimeout(() => {
-                                        boton.classList.remove('correcto');
-                                    }, 1000);
-                            }
-                            boton.classList.remove('seleccionado');
-
-                            
-
-                        });
-                        const palabras = data.words;
-                            console.log(data.words)
-                            
-                            // Obtener el elemento de la tabla del HTML
-                            const tabla = document.querySelector('.score tbody');
-
-                            // Crear un elemento <tr> por cada palabra y agregarlo a la tabla
-                            palabras.forEach(palabra => {
-                                const fila = document.createElement('tr');
-                                const celda = document.createElement('td');
-                                celda.textContent = palabra;
-                                fila.appendChild(celda);
-                                tabla.appendChild(fila);
+                                if (boton.classList.contains('seleccionado')) {
+                                    boton.classList.add('correcto');
+                                    setTimeout(() => {
+                                            boton.classList.remove('correcto');
+                                        }, 1000);
+                                }
+                                boton.classList.remove('seleccionado');
                             });
+                            // /const palabras = data.word;
+                            //     console.log(data.words)
+                                
+                            //     // Obtener el elemento de la tabla del HTML
+                            //     const tabla = document.querySelector('.score tbody');
+
+                            //     // Crear un elemento <tr> por cada palabra y agregarlo a la tabla
+                            //     palabras.forEach(palabra => {
+                            //         const fila = document.createElement('tr');
+                            //         const celda = document.createElement('td');
+                            //         celda.textContent = palabra;
+                            //         fila.appendChild(celda);
+                            //         tabla.appendChild(fila);
+                            //     });
+                            const tabla = document.querySelector('.score tbody');
+                            const fila = document.createElement('tr');
+                            const celda = document.createElement('td');
+                            celda.textContent = data.word;
+                            fila.appendChild(celda);
+                            tabla.appendChild(fila); 
                         } else {
                             console.log(data.flag);
                             botones.forEach(boton => {
