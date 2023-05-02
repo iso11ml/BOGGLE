@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Función Que Asigna Los Puntos De Cada Palabra
 def wordPuntuation(word):
-    if len(word) > 2 and len(word) <= 5:            
+    if len(word) >= 2 and len(word) <= 5:            
         score = 2
     elif len(word) > 5 and len(word) <= 7:
         score = 5
@@ -188,14 +188,16 @@ def tabla_palabras(word):
 
 # Función Para Validar Las Palabras
 def verificar_existencia(request, word):
-    print(word)
+    #print(word)
     state = trie.Search(word.lower())
     if state == True:
         score = wordPuntuation(word)
         context = tabla_palabras(word)
         fibonacciHeap.insert_node(score, word)
+        max_score = fibonacciHeap.get_max()
+        #print(max_score)
         print(context)
-        return JsonResponse({'flag': state, 'score': score, 'word': word, 'words': context})
+        return JsonResponse({'flag': state, 'score': score, 'word': word, 'words': context, 'max_score': max_score})
     else:
         return JsonResponse({'flag': state})
 
