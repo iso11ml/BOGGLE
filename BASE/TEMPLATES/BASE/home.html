@@ -1,4 +1,4 @@
-<!-- ko foreach: Array(100) -->
+<!-- 
 {% load static %}
 <head>
     <meta name = "viewport" content ="width=device-width, initial scale=1.0">
@@ -10,13 +10,114 @@
 
 <div class="triangle"></div>
 
-<!-- <div class="button-start">
-    <a href="">START</a>
-</div> -->
+
 <a href="http://127.0.0.1:8000/game/">START</a>
 <div class="statement">
     
 	<div class="extra-triangle"></div>
 	<div class="title">BOGGLE</div>
 </div>
+ -->
 
+<!-- Nuevo Home -->
+
+<!-- {% load static %}
+<head>
+    <meta name = "viewport" content ="width=device-width, initial scale=1.0">
+    <title>348713_SOSA</title>
+    <link rel = "stylesheet" type = "text/css" href="{% static 'styles/main2.css' %}">
+</head>
+
+<body>
+    <div class = "container">
+        <div class = "box">
+            <div class = "card">Universidad Autónoma De Chihuahua</div>
+            <div class = "card">Estructura De Datos II</div>
+            <div class = "card">Catedrática: Norma Leticia Mendez Mariscal</div>
+            <div class = "card">Alumno Sosa Hernandez Isaay</div>
+            <div class = "card">Boogle</div>
+            <div class = "card">Galardonado Al Mejor Juego Del Año</div>
+        </div>
+    </div>
+</body> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik&family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #f2f2f2;
+}
+
+.container {
+    width: 500px;
+    height: 500px;
+    perspective: 2000px;
+}
+
+.cube {
+    font-family: 'Source Code Pro', monospace;
+    position: relative;
+    width: 500px;
+    height: 500px;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.cube div {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    line-height: 500px;
+    color: black; 
+    text-align: center;
+    word-wrap: break-word;
+    backface-visibility: hidden;
+    font-size: 20px;
+}
+
+
+.front { transform: rotateY(0deg) translateZ(250px); background: #FFDAB9; }
+.back { transform: rotateY(180deg) translateZ(250px); background: #ADD8E6; }
+.left { transform: rotateY(-90deg) translateZ(250px); background: #98FB98; }
+.right { transform: rotateY(90deg) translateZ(250px); background: #FFFACD; }
+.top { transform: rotateX(90deg) translateZ(250px); background: #FFB6C1; }
+.bottom { transform: rotateX(-90deg) translateZ(250px); background: #f5c873; }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div id="cube" class="cube">
+    <div class="front">Universidad Autónoma De Chihuahua</div>
+    <div class="back">Estructura De Datos II</div>
+    <div class="right">Catedrática: Leticia Mendez Mariscal</div>
+    <div class="left">Alumno Sosa Hernandez Isaay</div>
+    <div class="top">Boggle</div>
+    <div class="bottom">Galardonado Al Mejor Juego Del Año</div>
+  </div>
+</div>
+
+<script>
+let cube = document.getElementById("cube");
+
+function rotateCube() {
+    let randomX = Math.floor(Math.random() * 360);
+    let randomY = Math.floor(Math.random() * 360);
+    cube.style.transform = `rotateX(${randomX}deg) rotateY(${randomY}deg)`;
+}
+
+setInterval(rotateCube, 2000); // rotate every 10 seconds
+</script>
+
+</body>
+</html>

@@ -174,6 +174,9 @@ class FibonacciHeap:
 def floor_log(x):
     return math.frexp(x)[1] - 1
 
+#Tabla Hash
+
+
 fibonacciHeap = FibonacciHeap()
 trie = Trie()
 trie.Insertar_archivo()
@@ -210,7 +213,7 @@ def boggle_board(request):
         vowels = ['A', 'E', 'I', 'O', 'U']
         alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
-        board = [[random.choices(alphabet, weights=weights)[0] for j in range(18)] for i in range(8)]
+        board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
         return render(request, 'BASE/main.html', {'board': board})
 
  
