@@ -1,344 +1,202 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Tilt Neon', cursive;
-}
-
-body{
-    overflow: hidden ;
-
-}
-
-.container{
-    width: 100%;
-    min-height: 100vh;
-    background-color: #f3f5f8;
-}
-
-nav{
-    display: flex;
-    width: 100% ;
-    justify-content: space-around;
-    height: 80px;
-    line-height: 80px;
-    z-index: 111;
-    
-}
-
-.logo{
-    display: flex;
-    font-size: 20px;
-    font-weight: 100;
-    color: #3d535f;
-    letter-spacing: 3px;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.b{
-    font-size: 70px;
-    color: #7f00ff;
-}
-
-.navItems{
-    display: flex;
-}
-
-.navItems li{
-    list-style: none;
-    margin: 0 15px;
-    
-}
-
-.navItems li a{
-    font-size: 25px;
-    color: #3d535f;
-    letter-spacing: 3px;
-    text-decoration: none;
-    text-transform: capitalize;
-}
-
-.wrapper{
-    display: flex;
-    width: 100%;
-    height: calc(100vh - 80px);
-    justify-content:  center;
-    align-items: center;
-    padding: 0 10%;
-    overflow: hidden;
-}
-
-.wrapper::before{
-    position: absolute;
-    content: '';
-    height: 600px;
-    width: 600px;
-    border-radius: 50%;
-    left: -10%;
-    top: 50%;
-    background: linear-gradient(45deg, #7f00ff,pink);
-    animation: object1 6s linear infinite;
-}
-
-.wrapper::after{
-    position: absolute;
-    content: '';
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    left: 35%;
-    top: 12%;
-    background: linear-gradient(45deg, #7f00ff,pink);
-    animation: object2 6s linear infinite;
-
-}
-
-@keyframes object1{
-    50%{
-        left: -15%;
-        top: 40%;
-    }
-}
-
-@keyframes object2{
-    50%{
-        left: 35%;
-        top: 20%;
-    }
-}
-
-
-
-.cols{
-    width: 50%;
-}
-
-.cols0{
-    z-index: 5;
-}
-
-.topline{
-    display: block;
-    position: relative;
-    font-size:  35px;
-    letter-spacing: 5px;
-    color: #3d535f;
-}
-
-.topline::after{
-    position: absolute;
-    content: '';
-    height: 4px;
-    width: 45px;
-    bottom: 10px;
-    background-color: #7f00ff;
-}
-h1{
-    display: block;
-    font-size: 7em;
-    font-weight: 900;
-    color: #3d535f;
-}
-
-.multiText{
-    color: #7f00ff;
-    text-transform: capitalize;
-}
-
-p{
-    display: block;
-    width: 90%;
-    font-size: 1.2em;
-    color: 3d535f;
-}
-
-.btns{
-    width: 100%;
-    position: relative;
-    left: 150px;
-}
-
-button{
-    outline: none;
-    border: none;
-    cursor: pointer;
-    font-size: 25px;
-    font-weight: 400;
-    color: #fff;
-    background-color: #3d535f;
-    padding: 8px 14px;
-    margin: 40px 5px;
-    letter-spacing: 2px;
-    text-transform: capitalize;
-    box-shadow: 0 15px 10px rbga(0,0,0,0.4);
-
-}
-
-button:hover{
-    background-color: #7f00ff;
-}
-
-.imgbox{
-    position: relative;
-    width: 30%;
-    height: 80%;
-}
-
-.imgbox img{
-    position: relative;
-    top: 0px;
-    right: 420px;
-}
- */
-/* ---- reset ---- */
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@1000&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-* {
-  margin: auto;
-  box-sizing: border-box;
-}
-
+@import url("https://fonts.googleapis.com");
+@import url('https://fonts.googleapis.com/css2?family=Rubik&family=Source+Code+Pro:wght@500&display=swap');
+@import url("https://fonts.gstatic.com");
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 body {
-  position: relative;
-  height: 100vh;
-  background: #000;
-  overflow: hidden;
+	background: #ffed94;
+	height: 100%;
+    width: 100%;
+	display: flex;
+    flex-direction: column;
 }
-body:before {
-  content: "";
-  position: fixed;
-  top: -50vh;
-  width: 100%;
-  height: 200%;
-  background-image: url(https://www.pixel4k.com/wp-content/uploads/2018/10/material-minimalist-4k_1539371343.jpg);
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.32);
-  animation: bob 20s ease infinite alternate;
+h2{
+	font-family: 'Tilt Neon';
 }
-
-.triangle {
-  position: absolute;
-  translate: 0px 50vh;
-  animation: bob 20s cubic-bezier(1, -0.48, 0, 1.35) infinite alternate, blink 0.8s ease infinite alternate, pulse 1.6s ease infinite alternate, spin 30s ease infinite;
+h3{
+	font-family: 'Tilt Neon';
+}
+.TitleContainer{
+	width: 100%;
+	height: 55%;
+	display: flex;
+	align-items: center;
+	justify-content: center; 
 }
 
-
-.statement {
-  position: relative;
-  height: 100vh;
-  max-width: 600px;
-  display: flex;
-}
-.statement:before, .statement:after {
-  content: "";
-  position: absolute;
-  scale: 3;
-  opacity: 0.8;
-  filter: drop-shadow(50px);
-  border: 100px solid transparent;
-  border-right-width: 0px;
-  border-left: 150px solid #f0f0f0;
-  rotate: -90deg;
-}
-.statement:before {
-  bottom: 20%;
-  rotate: -45deg;
-  animation: lil-spin 10s ease-in-out infinite;
-}
-.statement:after {
-  top: 20%;
-  right: 20%;
-  rotate: -105deg;
-  scale: 5;
-  mix-blend-mode: difference;
-  animation: lil-spin 15s ease-in-out infinite reverse;
-}
-.statement .extra-triangle {
-  content: "";
-  position: absolute;
-  top: 20%;
-  scale: 3;
-  opacity: 0.8;
-  filter: drop-shadow(50px);
-  border: 100px solid transparent;
-  border-right-width: 0px;
-  border-left: 150px solid #f0f0f0;
-  rotate: -90deg;
-  rotate: 95deg;
-  animation: lil-spin 10s ease-in-out infinite reverse;
-}
-.statement .title {
-  position: relative;
-  color: #fff;
-  font-family: nunito;
-  font-size: 5rem;
-  mix-blend-mode: difference;
-  animation: lil-spin 10s linear infinite;
+.BottomContainer{
+	/* background: white; */
+	height: 45%;
+	display: flex;
+  align-items: start;
+  justify-content: center;
 }
 
-@keyframes bob {
-  from {
-    translate: 0px 50vh;
-  }
-  to {
-    translate: 0px -50vh;
-  }
+h1 {
+	font-family: 'Bungee Shade', cursive;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    font-weight: normal;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 16vw;
+	background: linear-gradient(
+		-45deg,
+		#4bc0c8 25%,
+		#feac5e 25%,
+		#feac5e 50%,
+		#4bc0c8 50%,
+		#4bc0c8 75%,
+		#feac5e 75%,
+		#feac5e
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: 20px 20px;
+	background-position: 0 0;
+	animation: stripes 1s linear infinite;
 }
-@keyframes blink {
-  from {
-    opacity: 0.3;
-  }
-  to {
-    opacity: 0.8;
-  }
+
+@keyframes stripes {
+	100% {
+		background-position: 20px 0;
+	}
+} 
+/* Botón */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
-@keyframes pulse {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(0.1);
-  }
-}
-@keyframes spin {
-  from {
-    rotate: -90deg;
-  }
-  to {
-    rotate: 270deg;
-  }
-}
-@keyframes lil-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-15deg);
-  }
-  75% {
-    transform: rotate(15deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-/* 
-.button-start a{
+
+.corner-button {
+	font-family: 'Bungee Shade', cursive;
+  letter-spacing: 0.02rem;
+  cursor: pointer;
+  background: transparent;
+  border: 0.5rem solid currentColor;
+  padding: 1.5rem 2rem;
+  font-size: 2.6rem;
+  color: #4bc0c8;
   position: relative;
+  transition: color 0.3s;
   z-index: 1;
-  animation: lil-spin 10s linear infinite;
-  font-family: 'Press Start 2P', cursive;
-} */
+}
 
-/* a {
-  position: relative;
-  z-index: 9999;
-  
-  font-family: 'Press Start 2P', cursive;
-  color: white;
-  text-decoration: none;
-  animation: move 5s linear infinite;
-} */
+.corner-button:hover {
+  color: #feac5e;
+}
+
+.corner-button:hover::before {
+  width: 0;
+}
+
+.corner-button:hover::after {
+  height: 0;
+}
+
+.corner-button:active {
+  border-width: 0.25rem;
+}
+
+.corner-button::before,
+.corner-button::after {
+  content: "";
+  position: absolute;
+  background: #ffed94;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.corner-button::before {
+  width: calc(100% - 3rem);
+  height: calc(101% + 1rem);
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.corner-button::after {
+  height: calc(100% - 3rem);
+  width: calc(101% + 1rem);
+  left: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Ventana Emergente */
+.modal {
+	align-items: center;
+	justify-content: center;
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	backdrop-filter: blur(5px); /* Desenfoque del fondo */
+}
+
+.modal-content {
+	background-color: #fefefe;
+	padding: 20px;
+	border: 1px solid #888;
+	position: absolute; /* posiciona el elemento de manera absoluta respecto a su contenedor más cercano con posición no estática */
+	top: 50%; /* posiciona el borde superior del elemento al 50% desde la parte superior del contenedor */
+	left: 50%; /* posiciona el borde izquierdo del elemento al 50% desde la parte izquierda del contenedor */
+	transform: translate(-50%, -50%); /* desplaza el elemento hacia arriba y hacia la izquierda en un 50% de su propio tamaño, efectivamente centrando el elemento */
+	width: 40%;
+	height: 40%;
+}
+
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+	.close:hover,
+	.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+form .user-details .input-box{
+    margin: 20px 0 12px 0;
+    width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .details{
+	font-family: 'Tilt Neon';
+    display: block;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.user-details .input-box input{
+	font-family: 'Tilt Neon';
+    height: 50px;
+    width: 35%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+
+	margin-bottom: 10px;
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid{
+    border-color: #9b59b6
+}

@@ -1,152 +1,78 @@
-{% load static %}
-<head>
-    <meta name = "viewport" content ="width=device-width, initial scale=1.0">
-    <title>348713_SOSA</title>
-    <link rel = "stylesheet" type = "text/css" href="{% static 'styles/particles.css' %}">
-</head>
-
-<body>
-    <div id="particles-js"></div>
-    <div class = "general-container" >
-        <!-- Contenedor 1 -->
-        <div class = "title-container">
-            <h1>Jugador: Isaay</h1>
+<html>
+    {% load static %}
+    <head>
+        <meta name = "viewport" content ="width=device-width, initial scale=1.0">
+        <title>348713_SOSA</title>
+        <link rel = "stylesheet" type = "text/css" href="{% static 'styles/main.css' %}">
+    </head>
+    <body>
+    
+        <div class = "TitleContainer">
+            <h1 data-heading="Slide">BOGGLE</h1>
         </div>
 
-        <div class = "information-player-container">
-            <div class="clock">
-                <div id="minutes">
-                    1
-                </div>
-                <span>:</span>
-                <div id="seconds">
-                    30
-                </div>
+        <div class = "BottomContainer">
+            <button id="openModal" class="corner-button">Start</button>
+        </div>
 
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <div class = "HelloContainer">
+                    <h2>Bienvenidos!</h2>
+                    <h3>Reglas del juego:</h3>
+                    <h3>1.- El juego esta diseñado para dos jugadores, cada uno debe de elegir su alias.</h3>
+                    <h3>2.- Cada juagador dispone de 1:30 para encontrar todas las palabras posibles</h3>
+                    <h3>3.- La palabra que sea seleccionada por los jugadores solo podrá ser elegida una vez!</h3>
+                </div>
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Alias Jugador 1</span>
+                        <input type = "text" name ="salary" placeholder="Ejemplo: GatoFeli" >
+                    </div>
+
+                    <div class="input-box">
+                        <span class="details">Alias Jugador 2</span>
+                        <input type = "text" name ="salary" placeholder="Ejemplo: Andres123" >
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="score"></div>
-        <div class = "body-game-container">
-            <!-- Tablero -->
-            <table class="boggle-board">
-                {% for row in board %}
-                  <tr>
-                    {% for cell in row %}
-                      <td class="boggle-cell"><button>{{ cell }}</button></td>
-                    {% endfor %}
-                  </tr>
-                {% endfor %}
-            </table>
-            <script>
-                const botones = document.querySelectorAll('.boggle-board button');
-                let letrasSeleccionadas = '';
-                let seleccionando = false;
-                botones.forEach(boton => {
-                boton.addEventListener('mousedown', () => {
-                    letrasSeleccionadas += boton.innerText;
-                    seleccionando = true;
-                    boton.classList.add('seleccionado');
-                    console.log(letrasSeleccionadas);
-                });
-
-                boton.addEventListener('mouseenter', () => {
-                    if (seleccionando) {
-                    boton.classList.add('seleccionado');
-                    letrasSeleccionadas += boton.innerText;
-                    console.log(letrasSeleccionadas);
-                    }
-                });
-
-                boton.addEventListener('mouseup', () => {
-                    seleccionando = false;
-                    botones.forEach(boton => {
-                    });
-                    if (letrasSeleccionadas !== '') {
-                    
-                        fetch('/verificar-existencia/' + letrasSeleccionadas)
-                        .then(response => response.json())
-                        .then(data => {
-                        if (data.flag) {
-                            console.log(data.flag);
-                            console.log(data.score);
-                            console.log(data.word);
-                            botones.forEach(boton => {
-                                if (boton.classList.contains('seleccionado')) {
-                                    boton.classList.add('correcto');
-                                    setTimeout(() => {
-                                            boton.classList.remove('correcto');
-                                        }, 500);
-                                }
-                                boton.classList.remove('seleccionado');
-                            });
-                            // /const palabras = data.word;
-                            //     console.log(data.words)
-                                
-                            //     // Obtener el elemento de la tabla del HTML
-                            //     const tabla = document.querySelector('.score tbody');
-
-                            //     // Crear un elemento <tr> por cada palabra y agregarlo a la tabla
-                            //     palabras.forEach(palabra => {
-                            //         const fila = document.createElement('tr');
-                            //         const celda = document.createElement('td');
-                            //         celda.textContent = palabra;
-                            //         fila.appendChild(celda);
-                            //         tabla.appendChild(fila);
-                            //     });
-                            const tabla = document.querySelector('.score tbody');
-                            const fila = document.createElement('tr');
-                            const celda = document.createElement('td');
-                            celda.textContent = data.word;
-                            fila.appendChild(celda);
-                            tabla.appendChild(fila); 
-                        } else {
-                            console.log(data.flag);
-                            botones.forEach(boton => {
-                                if (boton.classList.contains('seleccionado')) {
-                                    boton.classList.add('incorrecto');
-                                    setTimeout(() => {
-                                        boton.classList.remove('incorrecto');
-                                    }, 1000);
-                                }
-                                boton.classList.remove('seleccionado');
-                            });
-                        }
-                        })
-                        .catch(error => {
-                        console.error(error);
-                        })
-                        .finally(() => {
-                        letrasSeleccionadas = '';
-                        });
-                    }
-                    
-                }
-      
-                );
-                });
-            </script>
-            <!-- Score -->
-            <table class = "score">
-                <thead>
-                  <tr>
-                    <th>Banco De Palabras</th>
-                  </tr>
-                </thead>
-                  <tbody>
-                    
-                    <tr>
-                      <td></td>
-                    </tr>
-                  
-                  </tbody>
-            </table>
-        </div>
-    </div>
     
+        <audio id="myAudio"> 
+            <source src="{% static 'audio/Song.mp3' %}" type="audio/mpeg">
+        </audio>
+        
+        <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-    <!-- Scripts -->
-    <script src="{% static 'js/particles.js' %}"></script>
-    <script src="{% static 'js/app.js' %}"></script>
-    <script src="https://kit.fontawesome.com/a2e8d0339c.js"></script>
-</body>
+        // Get the button that opens the modal
+        var btn = document.getElementById("openModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closeModal");
+
+        // Get the audio element
+        var audio = document.getElementById("myAudio");
+
+        // When the user clicks the button, open the modal and play the audio
+        btn.onclick = function() {
+        modal.style.display = "block";
+        audio.play();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+        </script>
+    </body>
 </html>

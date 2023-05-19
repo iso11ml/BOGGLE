@@ -205,8 +205,8 @@ def verificar_existencia(request, word):
         return JsonResponse({'flag': state})
 
 # Página Principal
-def home(request):
-        return render(request, 'BASE/home.html')
+def main(request):
+        return render(request, 'BASE/main.html')
 
 # Página Del Juego
 def boggle_board(request):
@@ -214,6 +214,6 @@ def boggle_board(request):
         alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
         board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
-        return render(request, 'BASE/main.html', {'board': board})
+        return render(request, 'BASE/boggle_board.html', {'board': board})
 
  

@@ -1,0 +1,151 @@
+{% load static %}
+<head>
+    <meta name = "viewport" content ="width=device-width, initial scale=1.0">
+    <title>348713_SOSA</title>
+    <link rel = "stylesheet" type = "text/css" href="{% static 'styles/boggle_board.css' %}">
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <div class = "general-container" >
+        <!-- Contenedor 1 -->
+        <div class = "title-container">
+            <h1>Jugador: Isaay</h1>
+        </div>
+
+        <div class = "information-player-container">
+            <div class="clock">
+                <div id="minutes">
+                    1
+                </div>
+                <span>:</span>
+                <div id="seconds">
+                    40
+                </div>
+
+            </div>
+        </div>
+        <div id="score"></div>
+        <div class = "body-game-container">
+            <!-- Tablero -->
+            <table class="boggle-board">
+                {% for row in board %}
+                  <tr>
+                    {% for cell in row %}
+                      <td class="boggle-cell"><button>{{ cell }}</button></td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+            </table>
+            <script>
+                const botones = document.querySelectorAll('.boggle-board button');
+                let letrasSeleccionadas = '';
+                let seleccionando = false;
+                botones.forEach(boton => {
+                boton.addEventListener('mousedown', () => {
+                    letrasSeleccionadas += boton.innerText;
+                    seleccionando = true;
+                    boton.classList.add('seleccionado');
+                    console.log(letrasSeleccionadas);
+                });
+
+                boton.addEventListener('mouseenter', () => {
+                    if (seleccionando) {
+                    boton.classList.add('seleccionado');
+                    letrasSeleccionadas += boton.innerText;
+                    console.log(letrasSeleccionadas);
+                    }
+                });
+
+                boton.addEventListener('mouseup', () => {
+                    seleccionando = false;
+                    botones.forEach(boton => {
+                    });
+                    if (letrasSeleccionadas !== '') {
+                    
+                        fetch('/verificar-existencia/' + letrasSeleccionadas)
+                        .then(response => response.json())
+                        .then(data => {
+                        if (data.flag) {
+                            console.log(data.flag);
+                            console.log(data.score);
+                            console.log(data.word);
+                            botones.forEach(boton => {
+                                if (boton.classList.contains('seleccionado')) {
+                                    boton.classList.add('correcto');
+                                    setTimeout(() => {
+                                            boton.classList.remove('correcto');
+                                        }, 500);
+                                }
+                                boton.classList.remove('seleccionado');
+                            });
+                            // /const palabras = data.word;
+                            //     console.log(data.words)
+                                
+                            //     // Obtener el elemento de la tabla del HTML
+                            //     const tabla = document.querySelector('.score tbody');
+
+                            //     // Crear un elemento <tr> por cada palabra y agregarlo a la tabla
+                            //     palabras.forEach(palabra => {
+                            //         const fila = document.createElement('tr');
+                            //         const celda = document.createElement('td');
+                            //         celda.textContent = palabra;
+                            //         fila.appendChild(celda);
+                            //         tabla.appendChild(fila);
+                            //     });
+                            const tabla = document.querySelector('.score tbody');
+                            const fila = document.createElement('tr');
+                            const celda = document.createElement('td');
+                            celda.textContent = data.word;
+                            fila.appendChild(celda);
+                            tabla.appendChild(fila); 
+                        } else {
+                            console.log(data.flag);
+                            botones.forEach(boton => {
+                                if (boton.classList.contains('seleccionado')) {
+                                    boton.classList.add('incorrecto');
+                                    setTimeout(() => {
+                                        boton.classList.remove('incorrecto');
+                                    }, 1000);
+                                }
+                                boton.classList.remove('seleccionado');
+                            });
+                        }
+                        })
+                        .catch(error => {
+                        console.error(error);
+                        })
+                        .finally(() => {
+                        letrasSeleccionadas = '';
+                        });
+                    }
+                    
+                }
+      
+                );
+                });
+            </script>
+            <!-- Score -->
+            <table class = "score">
+                <thead>
+                  <tr>
+                    <th>Banco De Palabras</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    
+                    <tr>
+                      <td></td>
+                    </tr>
+                  
+                  </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/particles.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a2e8d0339c.js"></script>
+</body>
+</html>
