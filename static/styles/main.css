@@ -146,7 +146,7 @@ h1 {
 }
 
 .modal-content {
-	background-color: #fefefe;
+	background-color: #ffed94;
 	padding: 20px;
 	border: 1px solid #888;
 	position: absolute; /* posiciona el elemento de manera absoluta respecto a su contenedor más cercano con posición no estática */
@@ -185,7 +185,7 @@ form .user-details .input-box{
 .user-details .input-box input{
 	font-family: 'Tilt Neon';
     height: 50px;
-    width: 35%;
+    width: 45%;
     outline: none;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -198,5 +198,10 @@ form .user-details .input-box{
 }
 .user-details .input-box input:focus,
 .user-details .input-box input:valid{
-    border-color: #9b59b6
+    border-color: #ffffff
+}
+
+
+.space{
+	height: 45px;
 }

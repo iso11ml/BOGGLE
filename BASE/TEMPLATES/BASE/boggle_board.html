@@ -10,11 +10,12 @@
     <div class = "general-container" >
         <!-- Contenedor 1 -->
         <div class = "title-container">
-            <h1>Jugador: Isaay</h1>
+            <h1 id="playerTurn">Turno Del Jugador: 1</h1>
         </div>
 
         <div class = "information-player-container">
             <div class="clock">
+                <span>Time: </span>
                 <div id="minutes">
                     1
                 </div>
@@ -22,7 +23,6 @@
                 <div id="seconds">
                     40
                 </div>
-
             </div>
         </div>
         <div id="score"></div>
@@ -38,6 +38,43 @@
                 {% endfor %}
             </table>
             <script>
+                // Temporizador 
+                // Temporizador
+  window.onload = function() {
+    var minutes = 1;
+    var seconds = 40;
+    var turn = 1;
+
+    var playerTurnElement = document.getElementById("playerTurn");
+    var minutesElement = document.getElementById("minutes");
+    var secondsElement = document.getElementById("seconds");
+
+    function startTimer() {
+      seconds = 40;
+      minutes = 1;
+
+      var interval = setInterval(function() {
+        seconds--;
+        if (seconds < 0) {
+          seconds = 59;
+          minutes--;
+        }
+
+        minutesElement.textContent = minutes;
+        secondsElement.textContent = seconds < 10 ? "0" + seconds : seconds;
+
+        if (minutes === 0 && seconds === 0) {
+          clearInterval(interval);
+          turn = turn === 1 ? 2 : 1;
+          playerTurnElement.textContent = "Turno Del Jugador: " + turn;
+          alert("Turno del jugador " + turn);
+          startTimer();
+        }
+      }, 1000);
+    }
+    startTimer();
+  };
+                // Seleccionar Casillas
                 const botones = document.querySelectorAll('.boggle-board button');
                 let letrasSeleccionadas = '';
                 let seleccionando = false;
@@ -79,20 +116,7 @@
                                 }
                                 boton.classList.remove('seleccionado');
                             });
-                            // /const palabras = data.word;
-                            //     console.log(data.words)
-                                
-                            //     // Obtener el elemento de la tabla del HTML
-                            //     const tabla = document.querySelector('.score tbody');
-
-                            //     // Crear un elemento <tr> por cada palabra y agregarlo a la tabla
-                            //     palabras.forEach(palabra => {
-                            //         const fila = document.createElement('tr');
-                            //         const celda = document.createElement('td');
-                            //         celda.textContent = palabra;
-                            //         fila.appendChild(celda);
-                            //         tabla.appendChild(fila);
-                            //     });
+                       
                             const tabla = document.querySelector('.score tbody');
                             const fila = document.createElement('tr');
                             const celda = document.createElement('td');

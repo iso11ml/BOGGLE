@@ -175,8 +175,114 @@ def floor_log(x):
     return math.frexp(x)[1] - 1
 
 #Tabla Hash
+import math
+class Node:
+    def __init__(self, palabra, puntaje):
+        self.palabra = palabra
+        self.puntaje = puntaje
+        self.next = None
 
 
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, palabra, puntaje):
+        new_node = Node(palabra, puntaje)
+        new_node.next = self.head
+        self.head = new_node
+
+    def search(self, palabra):
+        current = self.head
+        while current:
+            if current.palabra == palabra:
+                return current
+            current = current.next
+        return None
+
+    def delete(self, palabra):
+        current = self.head
+        prev = None
+
+        while current:
+            if current.palabra == palabra:
+                if prev:
+                    prev.next = current.next
+                else:
+                    self.head = current.next
+                return True
+            prev = current
+            current = current.next
+
+        return False
+
+
+class HashTable:
+    def __init__(self, size = 200):
+        self.size = size
+        self.table = [LinkedList() for _ in range(self.size)]
+    def hash_function(self, palabra):
+        def custom_hash(word, value = 200):
+            numberPrime1 = 31
+            numberPrime2 = 51
+            hash_sum = 0
+            for i, char in enumerate(word):
+                char_code = ord(char)
+                if i % 2 == 0:
+                    hash_sum += char_code * numberPrime1
+                else:
+                    hash_sum += char_code * numberPrime2
+            aureo = (5 ** 0.5 - 1) / 2
+            return int(value * ((hash_sum * aureo) % 1))
+        return custom_hash(palabra) % self.size
+    def insert(self, palabra, puntaje):
+        key = self.hash_function(palabra)
+        valores = self.table[key].search(palabra)
+        if valores:
+            # Actualizar los datos si ya existe
+            valores.puntaje = puntaje
+        else:
+            # Agregar nuevo trabajador
+            self.table[key].insert(palabra, puntaje)
+    def search(self, palabra):
+        key = self.hash_function(palabra)
+        valores = self.table[key].search(palabra)
+        return (valores.palabra,  valores.puntaje) if valores else None
+
+    def delete(self, palabra):
+        key = self.hash_function(palabra)
+        return self.table[key].delete(palabra)   
+
+# bandera = -1
+# while bandera == -1:
+#     print('Bienvenido!')
+#     opcion = int(input('Opción:\n1.- Insertar\n2.- Buscar\n3.- Eliminar\n4.- Salir\n'))
+
+#     if opcion == 1:
+#         palabra = input('Ingresa la Palabra: ')
+#         puntaje = float(input('Ingrese el Puntaje: '))
+#         hash_table.insert(palabra, puntaje)
+#         print('Valores insertados correctamente\n')
+#     elif opcion == 2:
+#         palabra = input('Ingrese la Palabra: ')
+#         valores = hash_table.search(palabra)
+#         if valores:
+#             print(f"La palabra ya fue seleccionada: Palabra = {valores[0]}, Puntaje  = {valores[1]}\n")
+#         else:
+#             print(f"No se encontró ningún valor asociado con {palabra}\n")
+#     elif opcion == 3:
+#         rfc = input('Ingrese el RFC: ')
+#         result = hash_table.delete(rfc)
+#         if result:
+#             print(f"El trabajador con RFC {rfc} ha sido eliminado con éxito.\n")
+#         else:
+#             print(f"No se encontró ningún empleado con el RFC: {rfc}\n")
+#     elif opcion == 4:
+#         bandera = 1
+
+# print('Hasta luego')
+
+hash_table = HashTable()
 fibonacciHeap = FibonacciHeap()
 trie = Trie()
 trie.Insertar_archivo()
@@ -192,7 +298,7 @@ def tabla_palabras(word):
 # Función Para Validar Las Palabras
 def verificar_existencia(request, word):
     #print(word)
-    state = trie.Search(word.lower())
+    state = hash_table.Search(word.lower()) # Verificar esto
     if state == True:
         score = wordPuntuation(word)
         tabla_palabras(word)
@@ -206,14 +312,14 @@ def verificar_existencia(request, word):
 
 # Página Principal
 def main(request):
-        return render(request, 'BASE/main.html')
+    return render(request, 'BASE/main.html')
+
 
 # Página Del Juego
 def boggle_board(request):
-        vowels = ['A', 'E', 'I', 'O', 'U']
-        alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-        weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
-        board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
-        return render(request, 'BASE/boggle_board.html', {'board': board})
+    vowels = ['A', 'E', 'I', 'O', 'U']
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
+    board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
+    return render(request, 'BASE/boggle_board.html', {'board': board})
 
- 
