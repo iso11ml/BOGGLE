@@ -14,37 +14,19 @@
         <div class = "BottomContainer">
             <button id="openModal" class="corner-button">Start</button>
         </div>
-   
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span id="closeModal" class="close">&times;</span>
-                    <div class = "HelloContainer">
-                        <h2>Bienvenidos!</h2>
-                        <h3>Reglas del juego:</h3>
-                        <h3>1.- El juego esta diseñado para dos jugadores.</h3>
-                        <h3>2.- Cada jugador dispone de 1:30 para encontrar todas las palabras posibles</h3>
-                        <h3>3.- La palabra que sea seleccionada por los jugadores solo podrá ser elegida una vez!</h3>
-                        <h3>4.- En cuanto presionen el botón de comenzar el contador inicia para el primer jugador</h3>
-                    </div>
-                    <!-- <div class="user-details">
-                        <div class="input-box">
-                            <span class="details">Alias Jugador 1</span>
-                            <input type = "text" name ="salary" placeholder="Ejemplo: GatoFeli" id = "jugador_1" >
-                        </div>
-
-                        <div class="input-box">
-                            <span class="details">Alias Jugador 2</span>
-                            <input type = "text" name ="salary" placeholder="Ejemplo: Andres123" id = "jugador_2">
-                        </div>
-                    </div> -->
-                    <div class = "space"> </div>
-                    <div class="BottomContainer">
-                        <a href="http://127.0.0.1:8000/game/">
-                            <button id="openModal" class="corner-button">Comenzar</button>
-                        </a>
-                    </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <div class = "HelloContainer">
+                    <h2>Bienvenidos!</h2>
+                    <h3>Reglas del juego:</h3>
+                    <h3>1.- El juego esta diseñado para dos jugadores.</h3>
+                    <h3>2.- Cada jugador dispone de 1:30 para encontrar todas las palabras posibles</h3>
+                    <h3>3.- La palabra que sea seleccionada por los jugadores solo podrá ser elegida una vez!</h3>
+                    <h3>4.- En cuanto presionen el botón de comenzar el contador inicia para el primer jugador</h3>
                 </div>
             </div>
+        </div>
      
         <audio id="myAudio"> 
             <source src="{% static 'audio/Song.mp3' %}" type="audio/mpeg">

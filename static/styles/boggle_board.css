@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Oswald&display=swap");
 
 #particles-js{
     height: 100vh;
@@ -17,13 +18,16 @@ body{
 }
 
 h1{
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Tilt Neon', cursive;
+
     color: black;
     font-size: 40px;
-    text-shadow: 0 0 1px black, 0 0 3px black, 0 0 30px black;
+    
 }
 
 .general-container{
+    /* background:#0bfca3 ; */
+
     height: 100vh;
     width: 100%;
     display: flex;
@@ -55,7 +59,9 @@ h1{
     display:flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Tilt Neon', cursive;}
+    font-family: 'Tilt Neon', cursive;
+
+}
 
 .clock div{
     /* background-color:  white; */
@@ -78,21 +84,13 @@ h1{
 .body-game-container{
 
     /* background-color:#900d0d ; */
-    /* height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1%; */
-
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     padding: 0 20px;
-    height: 66.67vh;
+    height: 50.67vh;
     gap: 2%;
-
 }
 
 
@@ -133,33 +131,35 @@ table.boggle-board td button:hover {
 table.boggle-board td button.seleccionado {
     background-color: rgb(208, 208, 208);
 }
-/* Tablero de puntuación */
 
+/* Tablero de puntuación */
 .score {
-margin: 20px auto 0;
-padding: 2em;
-width: 45%;
-height: 500px;
-border-radius: 10px;
-background-color: white;
-opacity: .8;
+    margin: 20px auto 0;
+    padding: 2em;
+    width: 45%;
+    height: 500px;
+    border-radius: 10px;
+    background-color: white;
+    opacity: .8;
 }
   
 .score th, .score td {
-padding: 15px;
-text-align: center;
-font-family: 'Tilt Neon', cursive;
+    padding: 15px;
+    text-align: center;
+    font-family: 'Tilt Neon', cursive;
+    
 } 
 
 .score th {
-/* background-color: #333; */
-color: black;
+    color: black;
 }
+
 
 .score tbody tr:nth-child(even) {
+    
 background-color: #f2f2f2;
 }
-
+/* Estado de la palabra */
 .boggle-board button.correcto {
     animation: flash 2s ease-in-out;
     background-color: rgb(121, 231, 121);
@@ -167,4 +167,104 @@ background-color: #f2f2f2;
 
 .boggle-board button.incorrecto {
     background-color: rgb(235, 107, 143);
+}
+
+.score tbody {
+    max-height: 390px; 
+    overflow-y: auto;
+    display: block;
+}
+
+/* Área de los botones */
+.buttoms {
+    /* background-color: rgb(193, 37, 232); */
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+
+}
+
+
+/* Botón 1 -> Play*/
+button {
+    margin: 0 auto;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 15px;
+    margin: 0 20px;
+   }
+   
+   button.learn-more {
+    font-weight: 600;
+    color: #382b22;
+    text-transform: uppercase;
+    /* padding: 1.25em 2em; */
+    background: #e0f5ff; /* Azul claro */
+    border: 2px solid #0066cc;
+    border-radius: 0.75em;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    padding: 2em 4em; /* Ajusta estos valores a tu gusto */
+    font-size: 15px;
+    font-family: 'Tilt Neon', cursive;
+
+}
+   
+   button.learn-more::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: #b3d1ff; /* Azul más claro */
+    -webkit-box-shadow: 0 0 0 2px #0066cc; /* Amarillo claro */
+    box-shadow: 0 0 0 2px #0066cc; /* Amarillo claro */
+    -webkit-transform: translate3d(0, 0.75em, -1em);
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+   }
+   
+   button.learn-more:hover {
+    background: #ffe9e9;
+    -webkit-transform: translate(0, 0.25em);
+    transform: translate(0, 0.25em);
+   }
+   
+   button.learn-more:hover::before {
+    -webkit-box-shadow: 0 0 0 2px #b18597;
+    box-shadow: 0 0 0 2px #b18597;
+    -webkit-transform: translate3d(0, 0.5em, -1em);
+    transform: translate3d(0, 0.5em, -1em);
+   }
+   
+   button.learn-more:active {
+    background: #ffe9e9;
+    -webkit-transform: translate(0em, 0.75em);
+    transform: translate(0em, 0.75em);
+   }
+   
+   button.learn-more:active::before {
+    -webkit-box-shadow: 0 0 0 2px #b18597;
+    box-shadow: 0 0 0 2px #b18597;
+    -webkit-transform: translate3d(0, 0, -1em);
+    transform: translate3d(0, 0, -1em);
+   }
+
+
+   .button-group {
+    display: inline-flex;
 }

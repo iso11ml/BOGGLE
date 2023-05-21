@@ -253,62 +253,33 @@ class HashTable:
         key = self.hash_function(palabra)
         return self.table[key].delete(palabra)   
 
-# bandera = -1
-# while bandera == -1:
-#     print('Bienvenido!')
-#     opcion = int(input('Opción:\n1.- Insertar\n2.- Buscar\n3.- Eliminar\n4.- Salir\n'))
-
-#     if opcion == 1:
-#         palabra = input('Ingresa la Palabra: ')
-#         puntaje = float(input('Ingrese el Puntaje: '))
-#         hash_table.insert(palabra, puntaje)
-#         print('Valores insertados correctamente\n')
-#     elif opcion == 2:
-#         palabra = input('Ingrese la Palabra: ')
-#         valores = hash_table.search(palabra)
-#         if valores:
-#             print(f"La palabra ya fue seleccionada: Palabra = {valores[0]}, Puntaje  = {valores[1]}\n")
-#         else:
-#             print(f"No se encontró ningún valor asociado con {palabra}\n")
-#     elif opcion == 3:
-#         rfc = input('Ingrese el RFC: ')
-#         result = hash_table.delete(rfc)
-#         if result:
-#             print(f"El trabajador con RFC {rfc} ha sido eliminado con éxito.\n")
-#         else:
-#             print(f"No se encontró ningún empleado con el RFC: {rfc}\n")
-#     elif opcion == 4:
-#         bandera = 1
-
-# print('Hasta luego')
-
-hash_table = HashTable()
+# hash_table = HashTable()
 fibonacciHeap = FibonacciHeap()
 trie = Trie()
 trie.Insertar_archivo()
 global palabras
 palabras = []
 
-
-# Función Que Inserta Las Palabras En La Lista -: Cambiar Hash
-def tabla_palabras(word):
-    palabras.append(word)
-    return palabras
-
 # Función Para Validar Las Palabras
 def verificar_existencia(request, word):
     #print(word)
-    state = hash_table.Search(word.lower()) # Verificar esto
-    if state == True:
-        score = wordPuntuation(word)
-        tabla_palabras(word)
-        fibonacciHeap.insert_node(score, word)
-        max_score = fibonacciHeap.get_max()
-        #print(max_score)
-        # print(context)
-        return JsonResponse({'flag': state, 'score': score, 'word': word,  'max_score': max_score})
+    state = hash_table.search(word.lower()) # 1. Busco la palabra en la tabla Hash
+    print(state)
+    if state == None: # Si devuelve None significa que no ha sido seleccionada
+        state = trie.Search(word.lower()) # Ahora compruebo que dicha palabra exista en el diccionario
+        if state == True: # Si existe se agrega a la tabla Hash y se le asigna un valor, además se asigna al Heap
+            score = wordPuntuation(word)
+            hash_table.insert(word.lower(), score)
+            fibonacciHeap.insert_node(score, word.lower())
+            max_score = fibonacciHeap.get_max()
+            print(max_score)
+            return JsonResponse({'flag': state, 'score': score, 'word': word,  'max_score': max_score})
+        else:
+            return JsonResponse({'flag': state})
     else:
+        state = False
         return JsonResponse({'flag': state})
+
 
 # Página Principal
 def main(request):
@@ -317,9 +288,16 @@ def main(request):
 
 # Página Del Juego
 def boggle_board(request):
+    global hash_table
+    hash_table = HashTable() 
+    global fibonacciHeap
+    fibonacciHeap = FibonacciHeap()
     vowels = ['A', 'E', 'I', 'O', 'U']
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
     board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
     return render(request, 'BASE/boggle_board.html', {'board': board})
+
+def maxScoreWord(request):
+    max_score = fibonacciHeap.get_max()
 
