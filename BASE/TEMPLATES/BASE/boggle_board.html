@@ -3,6 +3,17 @@
     <meta name = "viewport" content ="width=device-width, initial scale=1.0">
     <title>348713_SOSA</title>
     <link rel = "stylesheet" type = "text/css" href="{% static 'styles/boggle_board.css' %}">
+    <style>
+        .blink {
+            animation: blink-animation 1s steps(5, start) infinite;
+            color: green;
+        }
+        @keyframes blink-animation {
+            to {
+                visibility: hidden;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -10,7 +21,7 @@
     <div class = "general-container" >
         <!-- Contenedor 1 -->
         <div class = "title-container">
-            <h1 id="playerTurn">Turno Del Jugador: 1</h1>
+            <h1 id="playerTurn">Presiona Play Para Jugar</h1>
         </div>
 
         <div class = "information-player-container">
@@ -19,9 +30,8 @@
                 <div id="minutes">
                     1
                 </div>
-                <span>:</span>
-                <div id="seconds">
-                    40
+                <span>: </span>
+                <div id="seconds">40
                 </div>
             </div>
         </div>
@@ -38,133 +48,156 @@
                 {% endfor %}
             </table>
             <script>
-                // Temporizador 
-                // Temporizador
-  window.onload = function() {
-    var minutes = 1;
-    var seconds = 40;
-    var turn = 1;
-
-    var playerTurnElement = document.getElementById("playerTurn");
-    var minutesElement = document.getElementById("minutes");
-    var secondsElement = document.getElementById("seconds");
-
-    function startTimer() {
-      seconds = 40;
-      minutes = 1;
-
-      var interval = setInterval(function() {
-        seconds--;
-        if (seconds < 0) {
-          seconds = 59;
-          minutes--;
-        }
-
-        minutesElement.textContent = minutes;
-        secondsElement.textContent = seconds < 10 ? "0" + seconds : seconds;
-
-        if (minutes === 0 && seconds === 0) {
-          clearInterval(interval);
-          turn = turn === 1 ? 2 : 1;
-          playerTurnElement.textContent = "Turno Del Jugador: " + turn;
-          alert("Turno del jugador " + turn);
-          startTimer();
-        }
-      }, 1000);
-    }
-    startTimer();
-  };
-                // Seleccionar Casillas
-                const botones = document.querySelectorAll('.boggle-board button');
-                let letrasSeleccionadas = '';
-                let seleccionando = false;
-                botones.forEach(boton => {
-                boton.addEventListener('mousedown', () => {
-                    letrasSeleccionadas += boton.innerText;
-                    seleccionando = true;
-                    boton.classList.add('seleccionado');
-                    console.log(letrasSeleccionadas);
-                });
-
-                boton.addEventListener('mouseenter', () => {
-                    if (seleccionando) {
-                    boton.classList.add('seleccionado');
-                    letrasSeleccionadas += boton.innerText;
-                    console.log(letrasSeleccionadas);
-                    }
-                });
-
-                boton.addEventListener('mouseup', () => {
-                    seleccionando = false;
-                    botones.forEach(boton => {
-                    });
-                    if (letrasSeleccionadas !== '') {
-                    
-                        fetch('/verificar-existencia/' + letrasSeleccionadas)
-                        .then(response => response.json())
-                        .then(data => {
-                        if (data.flag) {
-                            console.log(data.flag);
-                            console.log(data.score);
-                            console.log(data.word);
-                            botones.forEach(boton => {
-                                if (boton.classList.contains('seleccionado')) {
-                                    boton.classList.add('correcto');
-                                    setTimeout(() => {
-                                            boton.classList.remove('correcto');
-                                        }, 500);
-                                }
-                                boton.classList.remove('seleccionado');
-                            });
-                       
-                            const tabla = document.querySelector('.score tbody');
-                            const fila = document.createElement('tr');
-                            const celda = document.createElement('td');
-                            celda.textContent = data.word;
-                            fila.appendChild(celda);
-                            tabla.appendChild(fila); 
-                        } else {
-                            console.log(data.flag);
-                            botones.forEach(boton => {
-                                if (boton.classList.contains('seleccionado')) {
-                                    boton.classList.add('incorrecto');
-                                    setTimeout(() => {
-                                        boton.classList.remove('incorrecto');
-                                    }, 1000);
-                                }
-                                boton.classList.remove('seleccionado');
-                            });
+                var turn = 1;
+                var turns = 0;
+                var isGameStarted = false;
+                var interval = null;
+            
+                window.onload = function() {
+                    var playerTurnElement = document.getElementById("playerTurn");
+                    var minutesElement = document.getElementById("minutes");
+                    var secondsElement = document.getElementById("seconds");
+                    var playButton = document.getElementById("play-button");
+            
+                    playButton.addEventListener('click', function() {
+                        if (!isGameStarted && turns < 2) {
+                            
+                            playerTurnElement.textContent = "Turno Del Jugador: " + turn;
+                            playerTurnElement.classList.add('blink');
+                            // Remove "blink" class after 5 seconds
+                            setTimeout(function() {
+                                playerTurnElement.classList.remove('blink');
+                            }, 5000);
+            
+                            startTimer();
+                            isGameStarted = true;
+                        } else if (turns === 2) {
+                            location.reload(); 
                         }
-                        })
-                        .catch(error => {
-                        console.error(error);
-                        })
-                        .finally(() => {
-                        letrasSeleccionadas = '';
-                        });
+                    });
+            
+                    function startTimer() {
+                        var minutes = 0;
+                        var seconds = 10;
+                        if(interval) clearInterval(interval);
+                        interval = setInterval(function() {
+                            seconds--;
+                            if (seconds < 0) {
+                                seconds = 59;
+                                minutes--;
+                            }
+            
+                            minutesElement.textContent = minutes;
+                            secondsElement.textContent = seconds < 10 ? "0" + seconds : seconds;
+            
+                            if (minutes === 0 && seconds === 0) {
+                                clearInterval(interval);
+                                turn = turn === 1 ? 2 : 1;
+                                turns++; // Increase turns counter
+                                if (turns < 2) {
+                                    playerTurnElement.textContent = "Turno Del Jugador: " + turn;
+                                } else {
+                                    playerTurnElement.textContent = "Game Over";
+                                    playButton.textContent = "New Game"; // Change the button text to "New Game"
+                                }
+                                isGameStarted = false;
+                            }
+                        }, 1000);
                     }
-                    
-                }
-      
-                );
-                });
+            
+                    // Seleccionar Casillas
+                    const botones = document.querySelectorAll('.boggle-board button');
+                    let letrasSeleccionadas = '';
+                    let seleccionando = false;
+                    botones.forEach(boton => {
+                        boton.addEventListener('mousedown', () => {
+                            if (isGameStarted) {
+                                letrasSeleccionadas += boton.innerText;
+                                seleccionando = true;
+                                boton.classList.add('seleccionado');
+                                console.log(letrasSeleccionadas);
+                            }
+                        });
+            
+                        boton.addEventListener('mouseenter', () => {
+                            if (seleccionando && isGameStarted) {
+                                boton.classList.add('seleccionado');
+                                letrasSeleccionadas += boton.innerText;
+                                console.log(letrasSeleccionadas);
+                            }
+                        });
+            
+                        boton.addEventListener('mouseup', () => {
+                            if (isGameStarted) {
+                                seleccionando = false;
+                                botones.forEach(boton => {});
+                                if (letrasSeleccionadas !== '') {
+                                    fetch('/verificar-existencia/' + letrasSeleccionadas)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.flag) {
+                                            console.log(data.flag);
+                                            console.log(data.score);
+                                            console.log(data.word);
+                                            botones.forEach(boton => {
+                                                if (boton.classList.contains('seleccionado')) {
+                                                    boton.classList.add('correcto');
+                                                    setTimeout(() => {
+                                                        boton.classList.remove('correcto');
+                                                    }, 500);
+                                                }
+                                                boton.classList.remove('seleccionado');
+                                                
+                                            });
+                                        } else {
+                                            console.log(data.flag);
+                                            botones.forEach(boton => {
+                                                if (boton.classList.contains('seleccionado')) {
+                                                    boton.classList.add('incorrecto');
+                                                    setTimeout(() => {
+                                                        boton.classList.remove('incorrecto');
+                                                    }, 1000);
+                                                }
+                                                boton.classList.remove('seleccionado');
+                                            });
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error(error);
+                                    })
+                                    .finally(() => {
+                                        letrasSeleccionadas = '';
+                                    });
+                                }
+                            }
+                        });
+                    });
+                };
             </script>
             <!-- Score -->
-            <table class = "score">
-                <thead>
-                  <tr>
-                    <th>Banco De Palabras</th>
-                  </tr>
-                </thead>
-                  <tbody>
-                    
-                    <tr>
-                      <td></td>
-                    </tr>
-                  
-                  </tbody>
-            </table>
+            
+                <table class = "score">
+                    <thead>
+                        <tr>
+                            <th>Palabra</th>
+                            <th>Jugador</th>
+                            <th>Puntuación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class = "buttoms">
+                <div class="button-group">
+                    <button id="play-button" class="learn-more">Play</button>
+                    <button class="learn-more">Instructions</button>
+                    <button class="learn-more">Quit</button>
+                </div>
+            </div>
         </div>
+        
     </div>
 
     <!-- Scripts -->
@@ -173,3 +206,4 @@
     <script src="https://kit.fontawesome.com/a2e8d0339c.js"></script>
 </body>
 </html>
+
