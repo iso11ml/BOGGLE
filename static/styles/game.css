@@ -1,0 +1,201 @@
+
+@import url("https://fonts.googleapis.com/css?family=Inconsolata");
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+
+/* Contenedores */
+body{
+    animation: gradient 5s ease-in-out infinite;
+    background: #7F7FD5;  
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+    background-size: 200% 200%;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.buttomsContainer{
+    display: flex;
+    width: 100%;
+    height: 15%;
+    /* background-color: #ffffff; */
+    justify-content: center;
+}
+
+.informationPlayerContainer{
+    display: flex;
+    width: 100%;
+    height: 15%;
+    /* background-color: #c22323; */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.boardContainer{
+    display: flex;
+    width: 100%;
+    height: 40%;
+    /* background-color: #23ff8e; */
+    align-items: center;
+    justify-content: center;
+}
+
+.wordBankContainer{
+    display: flex;
+    width: 100%;
+    height: 30%;
+    /* background-color: #ea31ff; */
+}
+
+/*  Tiempo, Puntuación y Player*/
+.playerContainer{
+    display: flex;
+    background-color: white;
+    height: 80%; 
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    opacity: 0.8;
+    margin: 15px;
+}
+.player{
+    font-family: 'Tilt Neon', cursive;
+    color: black;
+    font-size: 30px;
+}
+
+.clockContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    height: 80%;
+    width: 15%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    opacity: 0.8;
+    margin: 15px;
+}
+.text{
+    margin: 8px;
+}
+
+.clockContainer div{
+    font-family: 'Tilt Neon', cursive;
+    font-size: 35px;
+    letter-spacing: 5px;
+}
+
+.scoreContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 80%;
+    width: 35%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    opacity: 0.8;
+    margin: 15px;
+}
+
+.scoreContainer div{
+    font-family: 'Tilt Neon', cursive;
+    font-size: 25px;
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+/* Board */
+.boggle-board {
+    text-align: center;
+    height: 100%;
+    width: 72.5%;
+    background-color: white;
+    border-radius: 15px;
+    opacity: 0.8;
+}
+
+table.boggle-board td button {
+    width: 90px;
+    height: 55px;
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+    border: none;
+    font-family: 'Tilt Neon', cursive;
+    font-weight: bold;
+    font-size: 25px;
+}
+  
+table.boggle-board td button:hover {
+    background-color: #e6e6e6;
+}
+  
+table.boggle-board td button.seleccionado {
+    background-color: rgb(208, 208, 208);
+}
+
+.boggle-board button.correcto {
+    animation: flash 2s ease-in-out;
+    background-color: rgb(121, 231, 121);
+}
+
+.boggle-board button.incorrecto {
+    background-color: rgb(235, 107, 143);
+}
+
+.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    color: green;
+}
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+/* Tablero de puntuación */
+.wordBankContainer {
+    margin: 20px auto 0;
+    width: 72.5%;
+    height: 25%;
+    border-radius: 15px;
+    background-color: white;
+    opacity: .8;
+    overflow-y: auto;
+}
+  
+.score {
+    width: 100%;
+}
+
+.score th, .score td {
+    padding: 15px;
+    text-align: center;
+    font-family: 'Tilt Neon', cursive;
+    width: 33.33%;
+}
+
+.score th {
+    color: black;
+}
+
+.score tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

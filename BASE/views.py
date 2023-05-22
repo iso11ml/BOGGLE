@@ -239,10 +239,8 @@ class HashTable:
         key = self.hash_function(palabra)
         valores = self.table[key].search(palabra)
         if valores:
-            # Actualizar los datos si ya existe
             valores.puntaje = puntaje
         else:
-            # Agregar nuevo trabajador
             self.table[key].insert(palabra, puntaje)
     def search(self, palabra):
         key = self.hash_function(palabra)
@@ -296,8 +294,6 @@ def boggle_board(request):
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
     board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
-    return render(request, 'BASE/boggle_board.html', {'board': board})
+    return render(request, 'BASE/game.html', {'board': board})
 
-def maxScoreWord(request):
-    max_score = fibonacciHeap.get_max()
 

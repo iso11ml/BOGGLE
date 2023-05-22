@@ -1,0 +1,79 @@
+{% load static %}
+<head>
+    <meta name = "viewport" content ="width=device-width, initial scale=1.0">
+    <title>348713_SOSA</title>
+    <link rel = "stylesheet" type = "text/css" href="{% static 'styles/game.css' %}">
+    <link rel = "stylesheet" type = "text/css" href="{% static 'styles/buttom.css' %}">
+    <link rel = "stylesheet" type = "text/css" href="{% static 'styles/modal.css' %}">
+    <script src="{% static 'js/game.js' %}"></script>
+</head> 
+
+<body>
+    <div class = "buttomsContainer">
+        <a class = "btn cta bg" id = "play-button" >Play</a>
+        <a class= "btn cta bg" id = "open-rules">Rules</a>
+        <a class= "btn cta bg">Quit</a>
+    </div>
+
+    <div class = "informationPlayerContainer">
+        <div class = "playerContainer">
+            <div class = "player" id = "playerTurn">Presiona Play Para Jugar</div>
+        </div>
+            
+        <div class = "clockContainer">
+            <div class = "text">Time </div>
+            <div id = "minutes">1</div>
+            <div>:</div>
+            <div id = "seconds">00</div>
+        </div>
+
+        <div class = "scoreContainer">
+            <div id = "maxScoreWord">No Hay Palabra Con La Puntuación Más Alta</div>
+            <div id = "totalScore">Total Score: 0</div>
+        </div>
+    </div>
+
+    <div class = "boardContainer">
+        <table class = "boggle-board">
+            {% for row in board %}
+              <tr>
+                {% for cell in row %}
+                  <td class = "boggle-cell"> <button>{{ cell }} </button></td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+        </table>
+        <script>
+
+        </script>
+    </div>
+
+    <div class = "wordBankContainer">
+        <table class = "score">
+            <thead>
+                <tr>
+                    <th>Palabra</th>
+                    <th>Jugador</th>
+                    <th>Puntuación</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class = "modalContainer" id = "ventanaEmergente"> 
+        <div class = "modal">
+            <h1>Reglas del juego:</h1>
+            <p>1.- El juego esta diseñado para dos jugadores.</p>
+            <p>2.- Cada jugador dispone de 1:00 para encontrar todas las palabras posibles</p>
+            <p>3.- La palabra que sea seleccionada por los jugadores solo podrá ser elegida una vez!</p>
+            <p>4.- En cuanto presionen el botón de "Play" el contador inicia y no podrán poner pausa</p>
+            <p>5.- Una vez que termine el turno, el siguiente jugador debe de presionar el botón de "Play" para comenzar su turno</p>
+            <p>6.- Dispones de 10 segundo para presionar el botón de Play de lo contrario inciara el juego</p>
+            <p>7.- Puedes quitar el juego cuando quieras</p>
+            <button class = "btnDos" id = "close">Ok</button>
+        </div>
+    </div>
+</body>
