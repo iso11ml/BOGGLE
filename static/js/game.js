@@ -4,14 +4,11 @@ var isGameStarted = false;
 var interval = null;
 
 window.onload = function() {
-    
     var playerTurnElement = document.getElementById("playerTurn");
     var minutesElement = document.getElementById("minutes");
     var secondsElement = document.getElementById("seconds");
     var playButton = document.getElementById("play-button");
-
-   
-    // obtener los botones por sus ID
+    var audio = document.getElementById("myAudio");
     var openRulesButton = document.getElementById("open-rules");
     var closeButton = document.getElementById("close");
     var modalContainer = document.getElementById("ventanaEmergente");
@@ -37,6 +34,8 @@ window.onload = function() {
 
             startTimer();
             isGameStarted = true;
+            
+            audio.play();
         } else if (turns === 2) {
             location.reload(); 
         }
@@ -139,14 +138,6 @@ window.onload = function() {
 
                             document.getElementById('totalScore').textContent = 'Total Score: ' + totalScore;
                             document.getElementById('maxScoreWord').textContent = 'Palabra: '+ maxWord + ' Puntos: ' + maxScore;
-                            
-
-                            // const tabla = document.querySelector('.score tbody');
-                            // const fila = document.createElement('tr');
-                            // const celda = document.createElement('td');
-                            // celda.textContent = data.word;
-                            // fila.appendChild(celda);
-                            // tabla.appendChild(fila); 
                             const tabla = document.querySelector('.score tbody');
                             const fila = document.createElement('tr');
 
