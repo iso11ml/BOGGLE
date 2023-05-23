@@ -277,6 +277,7 @@ def verificar_existencia(request, word):
             fibonacciHeap.insert_node(score, word.lower())
             max_score = fibonacciHeap.get_max()
             print(max_score)
+
             return JsonResponse({'flag': state, 'score': score, 'word': word,  'max_score': max_score})
         else:
             return JsonResponse({'flag': state})
@@ -302,4 +303,12 @@ def boggle_board(request):
     board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
     return render(request, 'BASE/game.html', {'board': board})
 
+def eliminate_heap(request):
+    listWords = []
+    while fibonacciHeap.get_max() is not None:
+        lastWord = fibonacciHeap.get_max()
+        print(lastWord)
+        listWords.append(tuple(lastWord))
+        fibonacciHeap.extract_max()
 
+    return JsonResponse(listWords, safe = False)

@@ -8,6 +8,9 @@ var maxWord = 'Ninguna';
 var player1 = 0;
 var player2 = 0;
 
+var player1CountWords = 0;
+var player2CountWords = 0;
+
 var winner = ''
 window.onload = function() {
     var playerTurnElement = document.getElementById("playerTurn");
@@ -16,12 +19,10 @@ window.onload = function() {
     var playButton = document.getElementById("play-button");
     var audio = document.getElementById("myAudio");
     var openRulesButton = document.getElementById("open-rules");
-
     var closeButton = document.getElementById("close");
     var closeButton2 = document.getElementById("close2");
     var modalContainer = document.getElementById("ventanaEmergente");
     var modalContainer2 = document.getElementById("ventanaEmergente2");
-
     var playerContainer = document.querySelector('.playerContainer');
     
 
@@ -57,7 +58,7 @@ window.onload = function() {
 
     function startTimer() {
         var minutes = 0;
-        var seconds = 2;
+        var seconds = 5;
         var clockContainer = document.querySelector('.clockContainer');
         if(interval) clearInterval(interval);
         interval = setInterval(function() {
@@ -93,12 +94,39 @@ window.onload = function() {
                     if(turn === 2) playerContainer.classList.add('turn2');
                 } else {
                     if (player1 > player2){
-                        document.getElementById('winner').textContent = 'El Ganador es el Jugador 1';
+                        document.getElementById('winner').textContent = 'El Ganador Es El Jugador 1';
                     }else if (player1 < player2){
-                        document.getElementById('winner').textContent = 'El Ganador es el Jugador 2';
+                        document.getElementById('winner').textContent = 'El Ganador Es El Jugador 2';
                     }else{
-                        document.getElementById('winner').textContent = 'Gano el Jugador 3  :( no existe!';
+                        document.getElementById('winner').textContent = 'Nadie Ganó :v';
                     }
+                    fetch('/wordsFound/')
+                    .then(response => response.json())
+                    .then(data => {
+                        let wordsFound = '';
+                        
+                        if (data.length === 0) {  // Comprueba si el JSON está vacío
+                            wordsFound = 'Ninguna';
+                            player1 = 0;
+                            player2 = 0;
+                            player1CountWords = 0;
+                            player2CountWords = 0;
+                
+                        } else {
+                            for (let i = 0; i < data.length; i++) {
+                                let word = data[i][0];
+                                let score = data[i][1];
+                                wordsFound += `[${word}, ${score}]  \n`;
+                            }
+                    
+                        }
+                        
+                        document.getElementById('wordsFound').textContent += wordsFound;
+                    })
+                    .catch(error => console.error('Error:', error));
+
+                    document.getElementById('statsPlayer1').textContent = 'Jugador 1: ' + player1 + ' Puntos, Palabras Encontradas: ' + player1CountWords;
+                    document.getElementById('statsPlayer2').textContent = 'Jugador 2: ' + player2 + ' Puntos, Palabras Encontradas: ' + player2CountWords;
                     
                     playerTurnElement.textContent = "Game Over";
                     playButton.textContent = "New Game";
@@ -155,8 +183,10 @@ window.onload = function() {
                             console.log('data.score: ', data.score);
                             if (turn === 1) {
                                 player1 += data.score;
+                                player1CountWords += 1;
                             } else if (turn === 2) {
                                 player2 += data.score;
+                                player2CountWords += 1;
                             }
                             botones.forEach(boton => {
                                 if (boton.classList.contains('seleccionado')) {

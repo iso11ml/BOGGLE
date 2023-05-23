@@ -5,7 +5,7 @@
     <link rel = "stylesheet" type = "text/css" href="{% static 'styles/game.css' %}">
     <link rel = "stylesheet" type = "text/css" href="{% static 'styles/buttom.css' %}">
     <link rel = "stylesheet" type = "text/css" href="{% static 'styles/modal.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie.min.js" integrity="sha512-4n8f8u6nMNjmzpXCzD1zn064JDwpym3EufNftA3SYsJh3R5P3iyWojG1DzPz2pryRTNZ3BEW6GJVGSLrR0VeZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie.min.js" integrity="sha512-4n8f8u6nMNjmzpXCzD1zn064JDwpym3EufNftA3SYsJh3R5P3iyWojG1DzPz2pryRTNZ3BEW6GJVGSLrR0VeZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 
     <script src="{% static 'js/game.js' %}"></script>
 </head> 
@@ -74,6 +74,7 @@
             <p>4.- En cuanto presionen el botón de "Play" el contador inicia y no podrán poner pausa</p>
             <p>5.- Una vez que termine el turno, el siguiente jugador debe de presionar el botón de "Play" para comenzar su turno</p>
             <p>6.- Dispones de 10 segundo para presionar el botón de Play de lo contrario inciara el juego</p>
+            <p>6.- Al final se muestran las palabras de mayor puntaje en orden</p>
             <p>7.- Puedes quitar el juego cuando quieras</p>
             <button class = "btnDos" id = "close">Ok</button>
         </div>
@@ -85,23 +86,27 @@
             <!-- <div class = "animationContainer" id = "lottieContainer">
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.8/lottie.min.js"></script>
             </div> -->
+            <p>Resultados: </p>
+            <p id = "statsPlayer1"></p>
+            <p id = "statsPlayer2"></p>
             <p>Palabras encontradas en este juego: </p>
+            <p id = "wordsFound"> </p>
             <button class = "btnDos2" id = "close2">Ok</button>
         </div>
-        <script>
-           var animation = lottie.loadAnimation({
-    container: document.getElementById('lottieContainer'), 
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'https://assets7.lottiefiles.com/packages/lf20_xldzoar8.json',
-    rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice',
-    },
-    width: 300,  /* adjust as needed */
-    height: 300, /* adjust as needed */
-});
-        </script>
+        <!-- <script>
+                var animation = lottie.loadAnimation({
+            container: document.getElementById('lottieContainer'), 
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://assets7.lottiefiles.com/packages/lf20_xldzoar8.json',
+            rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice',
+            },
+            width: 300,  /* adjust as needed */
+            height: 300, /* adjust as needed */
+        });
+        </script> -->
     </div>
     <audio id = "myAudio"> 
         <source src="{% static 'audio/Song1.mp3' %}" type="audio/mpeg">
