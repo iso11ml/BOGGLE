@@ -5,6 +5,10 @@ var interval = null;
 var totalScore = 0;
 var maxScore = 0;
 var maxWord = 'Ninguna';
+var player1 = 0;
+var player2 = 0;
+
+var winner = ''
 window.onload = function() {
     var playerTurnElement = document.getElementById("playerTurn");
     var minutesElement = document.getElementById("minutes");
@@ -12,15 +16,25 @@ window.onload = function() {
     var playButton = document.getElementById("play-button");
     var audio = document.getElementById("myAudio");
     var openRulesButton = document.getElementById("open-rules");
+
     var closeButton = document.getElementById("close");
+    var closeButton2 = document.getElementById("close2");
     var modalContainer = document.getElementById("ventanaEmergente");
+    var modalContainer2 = document.getElementById("ventanaEmergente2");
+
     var playerContainer = document.querySelector('.playerContainer');
+    
 
     openRulesButton.addEventListener('click', function() {
         modalContainer.classList.add("show");
     });
+
     closeButton.addEventListener('click', function() {
         modalContainer.classList.remove("show");
+    });
+
+    closeButton2.addEventListener('click', function() {
+        modalContainer2.classList.remove("show2");
     });
 
     playButton.addEventListener('click', function() {
@@ -43,7 +57,7 @@ window.onload = function() {
 
     function startTimer() {
         var minutes = 0;
-        var seconds = 10;
+        var seconds = 2;
         var clockContainer = document.querySelector('.clockContainer');
         if(interval) clearInterval(interval);
         interval = setInterval(function() {
@@ -78,8 +92,17 @@ window.onload = function() {
                     if(turn === 1) playerContainer.classList.add('turn1');
                     if(turn === 2) playerContainer.classList.add('turn2');
                 } else {
+                    if (player1 > player2){
+                        document.getElementById('winner').textContent = 'El Ganador es el Jugador 1';
+                    }else if (player1 < player2){
+                        document.getElementById('winner').textContent = 'El Ganador es el Jugador 2';
+                    }else{
+                        document.getElementById('winner').textContent = 'Gano el Jugador 3  :( no existe!';
+                    }
+                    
                     playerTurnElement.textContent = "Game Over";
                     playButton.textContent = "New Game";
+                    modalContainer2.classList.add("show2");
                     playerContainer.classList.remove('turn1', 'turn2');
                     playerContainer.classList.add('gameover');
                 }
@@ -130,6 +153,11 @@ window.onload = function() {
                             totalScore += data.score;
                             console.log('totalScore después de agregar: ', totalScore);
                             console.log('data.score: ', data.score);
+                            if (turn === 1) {
+                                player1 += data.score;
+                            } else if (turn === 2) {
+                                player2 += data.score;
+                            }
                             botones.forEach(boton => {
                                 if (boton.classList.contains('seleccionado')) {
                                     boton.classList.add('correcto');
