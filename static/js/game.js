@@ -2,7 +2,9 @@ var turn = 1;
 var turns = 0;
 var isGameStarted = false;
 var interval = null;
-
+var totalScore = 0;
+var maxScore = 0;
+var maxWord = 'Ninguna';
 window.onload = function() {
     var playerTurnElement = document.getElementById("playerTurn");
     var minutesElement = document.getElementById("minutes");
@@ -12,38 +14,37 @@ window.onload = function() {
     var openRulesButton = document.getElementById("open-rules");
     var closeButton = document.getElementById("close");
     var modalContainer = document.getElementById("ventanaEmergente");
+    var playerContainer = document.querySelector('.playerContainer');
 
-    // agregar un EventListener al botón de reglas para mostrar la ventana emergente
     openRulesButton.addEventListener('click', function() {
         modalContainer.classList.add("show");
     });
-
-    // agregar un EventListener al botón de cerrar para ocultar la ventana emergente
     closeButton.addEventListener('click', function() {
         modalContainer.classList.remove("show");
     });
-    
 
     playButton.addEventListener('click', function() {
         if (!isGameStarted && turns < 2) {
             playerTurnElement.textContent = "Turno Del Jugador: " + turn;
-            playerTurnElement.classList.add('blink');
-            setTimeout(function() {
-                playerTurnElement.classList.remove('blink');
-            }, 5000);
-
+            playerContainer.classList.remove('turn2', 'gameover'); 
+            if(turn === 1) playerContainer.classList.add('turn1');
+            if(turn === 2) playerContainer.classList.add('turn2');
+            document.getElementById('totalScore').textContent = 'Total Score: ' + totalScore;
+            document.getElementById('maxScoreWord').textContent = 'Palabra: '+ maxWord + ' Puntos: ' + maxScore;
             startTimer();
             isGameStarted = true;
-            
             audio.play();
         } else if (turns === 2) {
             location.reload(); 
+            playerContainer.classList.remove('turn1', 'turn2'); 
+            playerContainer.classList.add('gameover'); 
         }
     });
 
     function startTimer() {
-        var minutes = 1;
-        var seconds = 0;
+        var minutes = 0;
+        var seconds = 10;
+        var clockContainer = document.querySelector('.clockContainer');
         if(interval) clearInterval(interval);
         interval = setInterval(function() {
             seconds--;
@@ -51,31 +52,42 @@ window.onload = function() {
                 seconds = 59;
                 minutes--;
             }
-
+    
             minutesElement.textContent = minutes;
             secondsElement.textContent = seconds < 10 ? "0" + seconds : seconds;
-
+    
+            // Comprueba si quedan 10 segundos o menos y aplica la clase de parpadeo
+            if (minutes === 0 && seconds <= 10) {
+                clockContainer.classList.add('blink');
+            } else {
+                clockContainer.classList.remove('blink');
+            }
+    
             if (minutes === 0 && seconds === 0) {
                 clearInterval(interval);
+                totalScore = 0;
+                maxScore = 0;
+                maxWord = 'Ninguna';
+                document.getElementById('maxScoreWord').textContent = 'No Hay Palabra Con La Puntuación Más Alta';
+                document.getElementById('totalScore').textContent = 'Total Score: ' + totalScore;
                 turn = turn === 1 ? 2 : 1;
                 turns++;
                 if (turns < 2) {
                     playerTurnElement.textContent = "Turno Del Jugador: " + turn;
-                    let totalScore = 0;
-                    let maxWord = 'No Hay Palabra Con La Puntuación Más Alta';
-                    document.getElementById('totalScore').textContent = 'Total Score: ' + totalScore;
-                    document.getElementById('maxScoreWord').textContent = maxWord
-
+                    playerContainer.classList.remove('turn1', 'turn2', 'gameover');
+                    if(turn === 1) playerContainer.classList.add('turn1');
+                    if(turn === 2) playerContainer.classList.add('turn2');
                 } else {
                     playerTurnElement.textContent = "Game Over";
-                    playButton.textContent = "New Game"; // Change the button text to "New Game"
+                    playButton.textContent = "New Game";
+                    playerContainer.classList.remove('turn1', 'turn2');
+                    playerContainer.classList.add('gameover');
                 }
+                clockContainer.classList.remove('blink');
                 isGameStarted = false;
             }
         }, 1000);
     }
-
-    // Seleccionar Casillas
     const botones = document.querySelectorAll('.boggle-board button');
     let letrasSeleccionadas = '';
     let seleccionando = false;
@@ -97,9 +109,8 @@ window.onload = function() {
             }
         });
 
-        let totalScore = 0;
-        let maxScore = 0;
-        let maxWord = 'Ninguna';
+        
+       
 
         boton.addEventListener('mouseup', () => {
             if (isGameStarted) {
@@ -113,8 +124,12 @@ window.onload = function() {
                             console.log(data.flag);
                             console.log(data.score);
                             console.log(data.word);
+                            console
+                        
+                            console.log('totalScore antes de agregar: ', totalScore);
                             totalScore += data.score;
-
+                            console.log('totalScore después de agregar: ', totalScore);
+                            console.log('data.score: ', data.score);
                             botones.forEach(boton => {
                                 if (boton.classList.contains('seleccionado')) {
                                     boton.classList.add('correcto');

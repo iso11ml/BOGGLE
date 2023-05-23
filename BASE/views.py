@@ -7,16 +7,23 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Función Que Asigna Los Puntos De Cada Palabra
 def wordPuntuation(word):
-    if len(word) >= 2 and len(word) <= 5:            
+    if len(word) == 2:           
         score = 2
-    elif len(word) > 5 and len(word) <= 7:
-        score = 5
-    elif len(word) > 7 and len(word) <= 9:
+    elif len(word) == 3:
+        score = 3
+    elif len(word) == 4:
+        score = 4
+    elif len(word) == 5:
+        score = 6
+    elif len(word) == 6:
+        score = 7
+    elif len(word) == 7:
         score = 8
-    elif len(word) > 9 and len(word) <= 12:
-        score = 11
-    elif len(word) > 12:
-        score = 15
+    elif len(word) == 8:
+        score = 9
+    elif len(word) > 9:
+        score = 18
+    
     return score
 
 # Clase Del Trie Diccionario 
@@ -252,11 +259,10 @@ class HashTable:
         return self.table[key].delete(palabra)   
 
 # hash_table = HashTable()
-fibonacciHeap = FibonacciHeap()
+# fibonacciHeap = FibonacciHeap()
 trie = Trie()
 trie.Insertar_archivo()
-global palabras
-palabras = []
+
 
 # Función Para Validar Las Palabras
 def verificar_existencia(request, word):
@@ -292,7 +298,7 @@ def boggle_board(request):
     fibonacciHeap = FibonacciHeap()
     vowels = ['A', 'E', 'I', 'O', 'U']
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    weights = [0.2 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
+    weights = [0.25 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
     board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
     return render(request, 'BASE/game.html', {'board': board})
 
