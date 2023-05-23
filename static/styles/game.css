@@ -1,146 +1,125 @@
-
 @import url("https://fonts.googleapis.com/css?family=Inconsolata");
 @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
 
-/* Contenedores */
 body{
     animation: gradient 5s ease-in-out infinite;
-    background: #7F7FD5;  
-    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
     background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
     background-size: 200% 200%;
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+.informationPlayerContainer, .boardContainer, .wordBankContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
-
 .buttomsContainer{
     display: flex;
     width: 100%;
-    height: 15%;
-    /* background-color: #ffffff; */
+    margin: 4vh;
     justify-content: center;
 }
-
 .informationPlayerContainer{
-    display: flex;
-    width: 100%;
-    height: 15%;
-    /* background-color: #c22323; */
+    height: 15vh;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-
 }
 
 .boardContainer{
-    display: flex;
-    width: 100%;
-    height: 40%;
-    /* background-color: #23ff8e; */
+    height: 40vh;
     align-items: center;
-    justify-content: center;
 }
 
 .wordBankContainer{
-    display: flex;
-    width: 100%;
-    height: 30%;
-    /* background-color: #ea31ff; */
+    height: 30vh;
 }
 
-/*  Tiempo, Puntuación y Player*/
-.playerContainer{
+.playerContainer, .clockContainer, .scoreContainer{
     display: flex;
     background-color: white;
-    height: 80%; 
-    width: 20%;
+    height: 10vh; 
     align-items: center;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: 1.5vh;
     opacity: 0.8;
-    margin: 15px;
-}
-.player{
-    font-family: 'Tilt Neon', cursive;
-    color: black;
-    font-size: 30px;
-}
-
-.clockContainer{
+    margin: 2vh;
     display: flex;
-    flex-direction: row;
+}
+
+ .scoreContainer{
+    display: flex;
     background-color: white;
-    height: 80%;
-    width: 15%;
+    height: 10vh; 
     align-items: center;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: 1.5vh;
     opacity: 0.8;
-    margin: 15px;
-}
-.text{
-    margin: 8px;
-}
-
-.clockContainer div{
-    font-family: 'Tilt Neon', cursive;
-    font-size: 35px;
-    letter-spacing: 5px;
-}
-
-.scoreContainer{
+    margin: 2vh;
     display: flex;
     flex-direction: column;
-    background-color: white;
-    height: 80%;
-    width: 35%;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    opacity: 0.8;
-    margin: 15px;
+}
+.playerContainer {
+    width: 14%;
 }
 
+.clockContainer {
+    width: 14%;
+}
+
+.scoreContainer {
+    width: 41%;
+    font-size: 1vw;
+    
+}
 .scoreContainer div{
-    font-family: 'Tilt Neon', cursive;
-    font-size: 25px;
-    letter-spacing: 5px;
+    letter-spacing: 0px;
     text-align: center;
 }
 
-/* Board */
+.boggle-board {
+    text-align: center;
+    height: 40vh;
+    width: 72.5%;
+    background-color: white;
+    border-radius: 1.5vh;
+    opacity: 0.8;
+}
+
+.player{
+    font-family: 'Tilt Neon', cursive;
+    color: black;
+    font-size: 1vw;
+}
+
+.text{
+    margin: 0.8vw;
+}
+
+.clockContainer div, .scoreContainer div{
+    font-family: 'Tilt Neon', cursive;
+    letter-spacing: 0.5vw;
+}
+
 .boggle-board {
     text-align: center;
     height: 100%;
     width: 72.5%;
     background-color: white;
-    border-radius: 15px;
+    border-radius: 1.5vh;
     opacity: 0.8;
 }
-
 table.boggle-board td button {
-    width: 90px;
-    height: 55px;
+    width: 90%;
+    height: 90%;
     background-color: white;
     transition: background-color 0.2s ease-in-out;
     border: none;
     font-family: 'Tilt Neon', cursive;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 1em; /* Ajusta esto según sea necesario */
 }
   
 table.boggle-board td button:hover {
@@ -164,18 +143,12 @@ table.boggle-board td button.seleccionado {
     animation: blink-animation 1s steps(5, start) infinite;
     color: green;
 }
-@keyframes blink-animation {
-    to {
-        visibility: hidden;
-    }
-}
 
-/* Tablero de puntuación */
 .wordBankContainer {
-    margin: 20px auto 0;
+    margin: 2vh auto 0;
     width: 72.5%;
-    height: 25%;
-    border-radius: 15px;
+    height: 25vh;
+    border-radius: 1.5vh;
     background-color: white;
     opacity: .8;
     overflow-y: auto;
@@ -186,7 +159,7 @@ table.boggle-board td button.seleccionado {
 }
 
 .score th, .score td {
-    padding: 15px;
+    padding: 1.5vh;
     text-align: center;
     font-family: 'Tilt Neon', cursive;
     width: 33.33%;

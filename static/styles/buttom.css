@@ -1,25 +1,25 @@
 /*  */
 .btn {
-    font-family: "Inconsolata", monospace;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: rgb(16, 24, 50);
-    cursor: pointer;
-    display: inline-block;
-    letter-spacing: 0.075em;
-    padding: 0.8em 1em;
-    margin: auto 2em;
-    position: relative;
-    align-self: center;
-    text-transform: uppercase;
-    border: 3px #00bcdd solid;
-    border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
-    border-image-slice: 1 1 0 0;
-    z-index: 1;
-    box-shadow: -0.5em 0.5em transparent;
-    transform-origin: left bottom;
-    transition: all 200ms ease-in-out;
-  }
+  font-family: "Inconsolata", monospace;
+  font-size: 1.5em; /* Ajusta el valor si es necesario */
+  font-weight: bold;
+  color: rgb(16, 24, 50);
+  cursor: pointer;
+  display: inline-block;
+  letter-spacing: 0.075em;
+  padding: 1.5vh 1vw; /* Ajusta estos valores si es necesario */
+  margin: auto 1.6em;
+  position: relative;
+  align-self: center;
+  text-transform: uppercase;
+  border: 3px #00bcdd solid;
+  border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+  border-image-slice: 1 1 0 0;
+  z-index: 1;
+  box-shadow: -0.5em 0.5em transparent;
+  transform-origin: left bottom;
+  transition: all 200ms ease-in-out;
+}
   
   .btn:before,
   .btn:after {

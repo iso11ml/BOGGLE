@@ -19,7 +19,7 @@ def wordPuntuation(word):
         score = 15
     return score
 
-# Clase Del Trie Diccionario
+# Clase Del Trie Diccionario 
 class NodoTrie:
     def __init__(self):
         self.children = {}
@@ -292,7 +292,7 @@ def boggle_board(request):
     fibonacciHeap = FibonacciHeap()
     vowels = ['A', 'E', 'I', 'O', 'U']
     alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    weights = [0.3 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
+    weights = [0.2 if letter in vowels else 0.7 / (len(alphabet) - len(vowels)) for letter in alphabet]
     board = [[random.choices(alphabet, weights = weights)[0] for j in range(18)] for i in range(8)]
     return render(request, 'BASE/game.html', {'board': board})
 
