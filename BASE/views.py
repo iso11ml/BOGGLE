@@ -1,3 +1,12 @@
+
+'''
+Boggel Proyecto Final
+Alumno: Isaay Sosa Hernández
+Grupo: 5HW1
+Elaborado: 18/03/23
+'''
+
+
 from django.shortcuts import redirect, render
 import random
 from django.contrib.staticfiles import finders
