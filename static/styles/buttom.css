@@ -1,4 +1,8 @@
 /*  */
+a {
+  text-decoration: none;
+  
+}
 .btn {
   font-family: "Inconsolata", monospace;
   font-size: 1.5em; /* Ajusta el valor si es necesario */

@@ -57,8 +57,8 @@ window.onload = function() {
     });
 
     function startTimer() {
-        var minutes = 0;
-        var seconds = 5;
+        var minutes = 1;
+        var seconds = 0;
         var clockContainer = document.querySelector('.clockContainer');
         if(interval) clearInterval(interval);
         interval = setInterval(function() {
