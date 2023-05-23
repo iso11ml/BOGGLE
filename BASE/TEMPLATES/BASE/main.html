@@ -4,52 +4,26 @@
         <meta name = "viewport" content ="width=device-width, initial scale=1.0">
         <title>348713_SOSA</title>
         <link rel = "stylesheet" type = "text/css" href="{% static 'styles/main.css' %}">
+        <script src="{% static 'js/main.js' %}"></script>
     </head>
-    <body>
-    
-        <div class = "TitleContainer">
-            <h1 data-heading="Slide">BOGGLE</h1>
-        </div>
 
-        <div class = "BottomContainer">
-            <button id="openModal" class="corner-button">Start</button>
+    <body>
+        <div id="container">
+            <span id="text1"></span>
+            <span id="text2"></span>
         </div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span id="closeModal" class="close">&times;</span>
-                <div class = "HelloContainer">
-                    <h2>Bienvenidos!</h2>
-                    <h3>Reglas del juego:</h3>
-                    <h3>1.- El juego esta diseñado para dos jugadores.</h3>
-                    <h3>2.- Cada jugador dispone de 1:30 para encontrar todas las palabras posibles</h3>
-                    <h3>3.- La palabra que sea seleccionada por los jugadores solo podrá ser elegida una vez!</h3>
-                    <h3>4.- En cuanto presionen el botón de comenzar el contador inicia para el primer jugador</h3>
-                </div>
-            </div>
-        </div>
-     
-        <audio id="myAudio"> 
-            <source src="{% static 'audio/Song.mp3' %}" type="audio/mpeg">
-        </audio>
         
-        <script>
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("openModal");
-        var span = document.getElementById("closeModal");
-        var audio = document.getElementById("myAudio");
-        btn.onclick = function() {
-        modal.style.display = "block";
-        audio.play();
-        }
-        span.onclick = function() {
-        modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-        }
-        </script>
+        <svg id="filters">
+            <defs>
+                <filter id="threshold">
+                    <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                                            0 1 0 0 0
+                                            0 0 1 0 0
+                                            0 0 0 255 -140" />
+                </filter>
+            </defs>
+        </svg>
     </body>
+
 </html>
 

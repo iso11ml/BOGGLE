@@ -3,13 +3,30 @@
 
 body{
     animation: gradient 5s ease-in-out infinite;
+    background: #7F7FD5;  
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
     background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
     background-size: 200% 200%;
+    
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 }
+
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 
 .informationPlayerContainer, .boardContainer, .wordBankContainer{
     display: flex;
